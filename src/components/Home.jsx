@@ -392,7 +392,6 @@ const Style = () => (
         border-image-slice: 1;
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
         border-radius: 20px;
-        padding: 40px;
         transition: all 0.3s;
         overflow: hidden;
         z-index: 1;
@@ -485,6 +484,7 @@ const Style = () => (
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        padding: 40px;
     }
 
     .service-card:hover {
@@ -725,7 +725,7 @@ const Style = () => (
     /* Contact Section */
     .contact-form {
         max-width: 700px;
-        width: 100%;
+        width: 460px;
     }
     .form-group {
         margin-bottom: 25px;
@@ -1488,9 +1488,9 @@ export default function App() {
                         </div>
                     </AnimatedComponent>
                     <div className="work-grid">
-                         <AnimatedComponent delay={1}><GlowCard className="work-card" style={{ padding: 0 }}><img src="https://placehold.co/600x400/050510/a78bfa?text=Shopify+Store" alt="Shopify Store" /><div className="work-card-content"><h3 className="work-card-title">Aura Cosmetics</h3><p className="work-card-desc">Shopify Plus migration resulting in a 200% conversion uplift.</p></div></GlowCard></AnimatedComponent>
-                         <AnimatedComponent delay={2}><GlowCard className="work-card" style={{ padding: 0 }}><img src="https://placehold.co/600x400/050510/ec4899?text=Mobile+Game" alt="Mobile Game" /><div className="work-card-content"><h3 className="work-card-title">Galaxy Raiders</h3><p className="work-card-desc">Mobile strategy game with 1M+ downloads in the first six months.</p></div></GlowCard></AnimatedComponent>
-                         <AnimatedComponent delay={3}><GlowCard className="work-card" style={{ padding: 0 }}><img src="https://placehold.co/600x400/050510/8b5cf6?text=Fitness+App" alt="Fitness App" /><div className="work-card-content"><h3 className="work-card-title">FitFlow AI</h3><p className="work-card-desc">An AI-powered fitness app with personalized workout plans.</p></div></GlowCard></AnimatedComponent>
+                         <AnimatedComponent delay={1}><GlowCard className="work-card" style={{ padding: 0 }}><img src="/cosmetics-store.webp" alt="Shopify Store" /><div className="work-card-content"><h3 className="work-card-title">Aura Cosmetics</h3><p className="work-card-desc">Shopify Plus migration resulting in a 200% conversion uplift.</p></div></GlowCard></AnimatedComponent>
+                         <AnimatedComponent delay={2}><GlowCard className="work-card" style={{ padding: 0 }}><img src="/game-app.webp" alt="Mobile Game" /><div className="work-card-content"><h3 className="work-card-title">Galaxy Raiders</h3><p className="work-card-desc">Mobile strategy game with 1M+ downloads in the first six months.</p></div></GlowCard></AnimatedComponent>
+                         <AnimatedComponent delay={3}><GlowCard className="work-card" style={{ padding: 0 }}><img src="/fitness-ai.webp" alt="Fitness App" /><div className="work-card-content"><h3 className="work-card-title">FitFlow AI</h3><p className="work-card-desc">An AI-powered fitness app with personalized workout plans.</p></div></GlowCard></AnimatedComponent>
                     </div>
                 </section>
 
@@ -1526,7 +1526,7 @@ export default function App() {
                         </AnimatedComponent>
                         <AnimatedComponent delay={2}>
                             <div className="faq-trust-panel">
-                                <img src="https://placehold.co/600x800/0f0f1e/8b5cf6?text=+" alt="Abstract trust background" />
+                                <img src="/main-image.png" alt="Abstract trust background" />
                                 <div className="faq-trust-overlay">
                                     <h3>Your Trusted Partner in Growth</h3>
                                     <div className="trust-indicators">
