@@ -388,7 +388,6 @@ const Style = () => (
         position: relative;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
         backdrop-filter: blur(20px);
-        border: 1px solid;
         border-image-source: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
         border-image-slice: 1;
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
@@ -859,9 +858,21 @@ const Style = () => (
     }
 
     @media (max-width: 768px) {
+    /* Services Section */
+    .services-grid {
+        grid-template-columns: 100%;
+       
+    }
+        .about-image{
+        width:350px;
+        height:250px;
+        }
         .hero-title {
             font-size: 48px;
         }
+            .contact-form{
+            width: 350px;
+            }
         .section-title {
             font-size: 40px;
         }
