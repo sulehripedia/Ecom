@@ -113,9 +113,10 @@ const Style = () => (
         left: 0;
         right: 0;
         z-index: 100;
-        background: rgba(5, 5, 16, 0.5);
+        background: linear-gradient(180deg, rgba(5, 5, 16, 0.7), rgba(5, 5, 16, 0.4));
         backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        padding: 5px 0;
     }
 
     .header-container {
@@ -144,6 +145,10 @@ const Style = () => (
         justify-content: center;
         font-size: 24px;
         padding: 10px;
+        transition: transform 0.3s;
+    }
+    .logo-container:hover .logo-icon {
+        transform: rotate(-10deg) scale(1.1);
     }
 
     .logo-text h1 {
@@ -172,7 +177,23 @@ const Style = () => (
         font-size: 14px;
         font-weight: 500;
         transition: color 0.3s;
+        position: relative;
     }
+    nav a:not(.cta-button)::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--brand-light-purple);
+        transition: all 0.3s;
+    }
+    nav a:hover:not(.cta-button)::after {
+        width: 100%;
+    }
+
 
     nav a:hover {
         color: var(--brand-light-purple);
@@ -257,7 +278,14 @@ const Style = () => (
         z-index: 1;
     }
 
-    /* Content Sections */
+    /* Content & Page Transitions */
+    .page-wrapper {
+        transition: opacity 0.5s ease-in-out;
+    }
+    .page-wrapper.fading {
+        opacity: 0;
+    }
+
     .content-wrapper {
         position: relative;
         z-index: 10;
@@ -353,12 +381,13 @@ const Style = () => (
         padding: 16px 32px;
         border-radius: 12px;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
         transition: all 0.3s;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        font-family: var(--font-body);
     }
     
     .primary-button {
@@ -388,13 +417,16 @@ const Style = () => (
         position: relative;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
         backdrop-filter: blur(20px);
+        border: 1px solid;
         border-image-source: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
         border-image-slice: 1;
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
         border-radius: 20px;
+        padding: 40px;
         transition: all 0.3s;
         overflow: hidden;
         z-index: 1;
+        height: 100%;
     }
 
     .glow-card::before {
@@ -478,14 +510,33 @@ const Style = () => (
         max-width: 1400px;
         width: 100%;
         align-items: stretch;
+        perspective: 1000px;
     }
 
     .service-card {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 40px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+        transform-style: preserve-3d;
     }
+    
+    .service-card.rotating {
+        animation: rotate-out 0.8s ease-in-out forwards;
+    }
+
+    @keyframes rotate-out {
+      0% {
+        transform: rotateY(0deg) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: rotateY(360deg) scale(0.8);
+        opacity: 0;
+      }
+    }
+
 
     .service-card:hover {
         transform: translateY(-10px);
@@ -519,6 +570,7 @@ const Style = () => (
     .service-title {
         font-size: 24px;
         font-weight: 600;
+        margin-right: 20px;
     }
 
     .service-features {
@@ -569,39 +621,197 @@ const Style = () => (
       color: var(--brand-light-purple);
     }
     
-    /* Work Section */
-    .work-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 40px;
-        max-width: 1200px;
+    /* Service/Project Detail Page */
+    .detail-page {
+        position: relative;
+        z-index: 20;
         width: 100%;
+        min-height: 100vh;
+        background: var(--background-dark);
+        animation: page-fade-in 0.8s forwards;
+        padding: 150px 40px 60px;
+    }
+
+    @keyframes page-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
-    .work-card {
-        border-radius: 20px;
-        overflow: hidden;
-        transition: transform 0.3s;
+    .back-button {
+      position: fixed;
+      top: 100px;
+      left: 40px;
+      z-index: 30;
+      background: var(--background-med);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: var(--brand-light-purple);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      transition: all 0.3s;
     }
-    .work-card:hover {
-        transform: translateY(-10px);
+    .back-button:hover {
+        background: var(--brand-purple);
+        color: white;
     }
-    .work-card img {
+    
+    .detail-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .detail-header {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    
+    .detail-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+    .detail-tags span {
+        background: var(--background-med);
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-family: var(--font-display);
+        font-size: 12px;
+    }
+    
+    .detail-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+    }
+    .detail-description p {
+        line-height: 1.8;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 20px;
+    }
+    .detail-sidebar h4 {
+      margin-bottom: 15px;
+      color: var(--brand-light-purple);
+    }
+    .detail-projects .project-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    .detail-projects img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    
+    .project-featured-image {
         width: 100%;
-        height: 250px;
+        height: 450px;
+        border-radius: 20px;
         object-fit: cover;
-        display: block;
+        margin-bottom: 40px;
     }
+    .project-timeline {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 30px;
+        font-family: var(--font-display);
+        color: var(--text-muted);
+    }
+
+    /* Work Section */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    .work-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 400px;
+      transition: all 0.5s ease;
+      background: #111;
+      cursor: pointer;
+    }
+    
+    .work-card:nth-child(1) { grid-column: 1 / 3; }
+    .work-card:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 3; height: 810px;}
+    .work-card:nth-child(3) { grid-column: 1 / 2; }
+    .work-card:nth-child(4) { grid-column: 2 / 3; }
+
+    .work-card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .work-card:hover .work-card-bg {
+      transform: scale(1.1);
+    }
+
+    .work-card-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .work-card-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(5, 5, 16, 0.9) 10%, rgba(5, 5, 16, 0.2) 70%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .work-card:hover .work-card-overlay, .work-card:hover .work-card-video {
+        opacity: 1;
+    }
+
     .work-card-content {
-        padding: 25px;
+      transform: translateY(20px);
+      transition: transform 0.5s ease;
     }
+    .work-card:hover .work-card-content {
+      transform: translateY(0);
+    }
+    
     .work-card-title {
-        font-size: 22px;
+        font-size: 28px;
         margin-bottom: 10px;
         font-weight: 600;
+        color: white;
     }
     .work-card-desc {
-         color: rgba(167, 139, 250, 0.7);
+         color: rgba(255, 255, 255, 0.8);
+         margin-bottom: 20px;
     }
     
     /* About Section */
@@ -725,7 +935,7 @@ const Style = () => (
     /* Contact Section */
     .contact-form {
         max-width: 700px;
-        width: 460px;
+        width: 100%;
     }
     .form-group {
         margin-bottom: 25px;
@@ -849,30 +1059,21 @@ const Style = () => (
         .stats-grid {
             grid-template-columns: repeat(2, 1fr);
         }
-        .about-container {
+        .about-container, .faq-container, .detail-grid, .work-grid {
+            grid-template-columns: 1fr;
             flex-direction: column;
         }
-        .faq-container {
-            grid-template-columns: 1fr;
+        .work-card, .work-card:nth-child(2) {
+          grid-column: auto;
+          grid-row: auto;
+          height: 400px;
         }
     }
 
     @media (max-width: 768px) {
-    /* Services Section */
-    .services-grid {
-        grid-template-columns: 100%;
-       
-    }
-        .about-image{
-        width:350px;
-        height:250px;
-        }
         .hero-title {
             font-size: 48px;
         }
-            .contact-form{
-            width: 350px;
-            }
         .section-title {
             font-size: 40px;
         }
@@ -892,8 +1093,12 @@ const Style = () => (
             flex-direction: column;
             text-align: center;
         }
-        .work-grid {
-            grid-template-columns: 1fr;
+         .detail-content {
+          padding: 60px 30px;
+        }
+        .back-button {
+            top: 90px;
+            left: 20px;
         }
     }
   `}</style>
@@ -913,6 +1118,100 @@ const BuildingIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" he
 const PhoneIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>;
 const DollarSignIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>;
 const UsersIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>;
+
+// --- DATA ---
+const servicesData = [
+  { 
+    id: 1,
+    icon: <CartIcon />, 
+    title: "E-commerce Solutions",
+    features: ["Custom Theme Development", "App & API Integration", "Performance Optimization", "Subscription Models"],
+    deliverables: "A high-converting, lightning-fast storefront with a seamless checkout experience and a scalable backend architecture.",
+    tech: "Shopify, Magento, React, Vue",
+    description: "We build world-class e-commerce experiences that drive sales and foster customer loyalty. From Shopify Plus for enterprise brands to custom headless solutions, our focus is on creating a frictionless path from discovery to purchase. We optimize every step of the funnel, ensuring your store is not only beautiful but also a powerful sales engine.",
+    tags: ["Shopify Plus", "Headless Commerce", "Conversion Rate Optimization", "Subscriptions", "UX/UI Design"],
+    projects: [
+      { name: "Aura Cosmetics", img: "https://placehold.co/100x100/050510/a78bfa?text=Aura" },
+      { name: "Urban Threads", img: "https://placehold.co/100x100/050510/a78bfa?text=Urban" }
+    ],
+    trust: ["Shopify Plus Partner"]
+  },
+  { 
+    id: 2,
+    icon: <CodeIcon />, 
+    title: "Web Development",
+    features: ["Headless CMS Architecture", "Progressive Web Apps (PWA)", "API Development & Integration", "Ongoing Maintenance"],
+    deliverables: "Blazing-fast, secure, and SEO-friendly websites that provide an exceptional user experience across all devices.",
+    tech: "React, Node.js, Vercel, AWS",
+    description: "Our web development goes beyond aesthetics. We build high-performance, scalable, and secure web applications using modern frameworks. Whether it's a corporate site with a headless CMS like Contentful or a complex Progressive Web App, we deliver robust solutions that are a pleasure to use and easy to manage.",
+    tags: ["React/Next.js", "Jamstack", "PWA", "API First", "Web Performance"],
+    projects: [
+      { name: "Quantum Analytics", img: "https://placehold.co/100x100/050510/ec4899?text=Quantum" },
+      { name: "Nexus Media", img: "https://placehold.co/100x100/050510/ec4899?text=Nexus" }
+    ],
+    trust: ["Vercel Partner"]
+  },
+  { 
+    id: 3,
+    icon: <SmartphoneIcon />, 
+    title: "App Development",
+    features: ["Native iOS & Android", "Cross-Platform (React Native)", "UI/UX Prototyping & Design", "App Store Submission"],
+    deliverables: "Beautiful, intuitive mobile applications that engage users and extend the reach of your brand right into their pockets.",
+    tech: "Swift, Kotlin, React Native",
+    description: "We design and develop mobile apps for iOS and Android that solve real-world problems and delight users. Our process is collaborative, starting with deep research and prototyping, and ending with a polished, market-ready product. We handle everything, including App Store submission and post-launch support.",
+    tags: ["iOS (Swift)", "Android (Kotlin)", "React Native", "Firebase", "UX Research"],
+    projects: [
+      { name: "FitFlow AI", img: "https://placehold.co/100x100/050510/8b5cf6?text=Fit" },
+      { name: "Connectly Social", img: "https://placehold.co/100x100/050510/8b5cf6?text=Connect" }
+    ],
+    trust: []
+  },
+   { 
+    id: 4,
+    icon: <GamepadIcon />, 
+    title: "Game Development",
+    features: ["Unity & Unreal Engine", "WebGL-based Web Games", "3D Modeling & Asset Creation", "Multiplayer Integration"],
+    deliverables: "Immersive gaming experiences for web and mobile that captivate players and build dedicated communities.",
+    tech: "Unity, C#, Blender, Photon",
+    description: "We bring interactive worlds to life. Our team has experience building everything from casual mobile games to more complex multiplayer experiences for the web. We cover the full development cycle: concept, game design, asset creation, programming, and deployment.",
+    tags: ["Unity3D", "WebGL", "Multiplayer", "Game Design", "3D Art"],
+    projects: [
+      { name: "Galaxy Raiders", img: "https://placehold.co/100x100/050510/a78bfa?text=Galaxy" },
+      { name: "Pixel Dash", img: "https://placehold.co/100x100/050510/a78bfa?text=Pixel" }
+    ],
+    trust: []
+  },
+  { 
+    id: 5,
+    icon: <CloudIcon />, 
+    title: "Cloud Solutions",
+    features: ["AWS/GCP/Azure Infrastructure", "Serverless & Microservices", "CI/CD Automation", "Database Management"],
+    deliverables: "Robust, scalable, and secure cloud infrastructure that ensures your application is always available and performs under pressure.",
+    tech: "Docker, Kubernetes, Terraform",
+    description: "A great application needs a solid foundation. We design and manage cloud infrastructure that is secure, scalable, and cost-effective. From setting up CI/CD pipelines for automated deployments to architecting serverless applications, we ensure your tech stack is ready for primetime.",
+    tags: ["AWS", "Serverless", "DevOps", "CI/CD", "Infrastructure as Code"],
+    projects: [
+      { name: "DataStream Corp", img: "https://placehold.co/100x100/050510/ec4899?text=Data" },
+      { name: "CloudLeap", img: "https://placehold.co/100x100/050510/ec4899?text=Cloud" }
+    ],
+    trust: ["AWS Certified"]
+  },
+  { 
+    id: 6,
+    icon: <ArrowUpIcon />, 
+    title: "Growth Marketing",
+    features: ["Technical SEO Audits", "Paid Social & SEM Campaigns", "Content Strategy", "CRO"],
+    deliverables: "Data-driven marketing strategies that drive targeted traffic, increase conversions, and deliver a measurable return on investment.",
+    tech: "Ahrefs, GA4, Figma, Hotjar",
+    description: "Building is only half the battle. Our growth marketing team helps you find and convert your ideal customers. We combine technical SEO, data-driven paid advertising, and compelling content to create a holistic strategy that turns your digital product into a cornerstone of your business growth.",
+    tags: ["SEO", "PPC", "Content Marketing", "Data Analytics", "A/B Testing"],
+    projects: [
+      { name: "Aura Cosmetics", img: "https://placehold.co/100x100/050510/8b5cf6?text=Aura" },
+      { name: "Quantum Analytics", img: "https://placehold.co/100x100/050510/8b5cf6?text=Quantum" }
+    ],
+    trust: ["Google Partner", "Meta Business Partner"]
+  },
+];
 
 
 // --- REUSABLE COMPONENTS ---
@@ -951,7 +1250,7 @@ const AnimatedComponent = ({ children, delay = 0 }) => {
     );
 };
 
-const GlowCard = ({ children, className = '' }) => {
+const GlowCard = ({ children, className = '', onClick = () => {} }) => {
     const cardRef = useRef(null);
     const canvasRef = useRef(null);
 
@@ -987,6 +1286,7 @@ const GlowCard = ({ children, className = '' }) => {
         };
 
         const animateParticles = () => {
+            if(!ctx || !canvas) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.x += p.vx;
@@ -1014,7 +1314,9 @@ const GlowCard = ({ children, className = '' }) => {
         
         const handleMouseLeave = () => {
             cancelAnimationFrame(animationFrameId);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (canvas && ctx) {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
         };
 
         card.addEventListener('mouseenter', handleMouseEnter);
@@ -1030,7 +1332,7 @@ const GlowCard = ({ children, className = '' }) => {
     }, []);
 
     return (
-        <div ref={cardRef} className={`glow-card ${className}`}>
+        <div ref={cardRef} className={`glow-card ${className}`} onClick={onClick}>
             <canvas ref={canvasRef} className="particle-canvas"></canvas>
             {children}
         </div>
@@ -1061,6 +1363,51 @@ const FAQItem = ({ question, answer, index, activeIndex, setActiveIndex }) => {
     );
 };
 
+const ServiceDetailPage = ({ service, onBack }) => {
+  return (
+    <div className="detail-page">
+      <button className="back-button" onClick={onBack}>← Back to Services</button>
+      <div className="detail-content">
+        <div className="detail-header">
+          <div className="service-icon">{service.icon}</div>
+          <h2 className="section-title" style={{marginBottom: 0, fontSize: '48px'}}>{service.title}</h2>
+        </div>
+        <div className="detail-tags">
+          {service.tags.map(tag => <span key={tag}>{tag}</span>)}
+        </div>
+        <div className="detail-grid">
+          <div className="detail-description">
+            <p>{service.description}</p>
+            <h4>What We Deliver:</h4>
+            <p>{service.deliverables}</p>
+          </div>
+          <div className="detail-sidebar">
+            <h4>Related Projects</h4>
+            <div className="detail-projects">
+              {service.projects.map(p => (
+                <div key={p.name} className="project-item">
+                  <img src={p.img} alt={p.name} />
+                  <span>{p.name}</span>
+                </div>
+              ))}
+            </div>
+            {service.trust.length > 0 && (
+              <>
+                <h4 style={{marginTop: '30px'}}>Trust Indicators</h4>
+                <div className="trust-indicators" style={{justifyContent: 'flex-start', gap: '15px'}}>
+                  {service.trust.map(t => <span key={t} className="trust-indicator">{t}</span>)}
+                </div>
+              </>
+            )}
+             <a href="#contact" onClick={onBack} className="primary-button" style={{width: '100%', marginTop: '30px'}}>Inquire Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 // --- MAIN SECTIONS ---
 
 const Header = ({ onMenuToggle, isMenuOpen }) => (
@@ -1078,7 +1425,6 @@ const Header = ({ onMenuToggle, isMenuOpen }) => (
                 <a href="#work">Work</a>
                 <a href="#about">About</a>
                 <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
                 <a href="#contact" className="cta-button">Get Started</a>
             </nav>
             <button className={`mobile-menu-button ${isMenuOpen ? 'active' : ''}`} onClick={onMenuToggle}>
@@ -1131,9 +1477,22 @@ const ThreeCanvas = () => {
 
         structures.forEach(s => {
             const geometry = new THREE.BoxGeometry(s.size, s.size, s.size);
+            const material = new THREE.MeshStandardMaterial({
+                color: 0x1a1a2a,
+                metalness: 0.1,
+                roughness: 0.8,
+            });
+            const cube = new THREE.Mesh(geometry, material);
+            
             const edges = new THREE.EdgesGeometry(geometry);
-            const material = new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.8 });
-            const cube = new THREE.LineSegments(edges, material);
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x8b5cf6,
+                transparent: true,
+                opacity: 0.3
+            });
+            const wireframe = new THREE.LineSegments(edges, lineMaterial);
+            cube.add(wireframe);
+
             cube.position.set(s.pos[0], s.pos[1], s.pos[2]);
             cube.rotation.set(s.rot.x, s.rot.y, s.rot.z);
             scene.add(cube);
@@ -1153,10 +1512,15 @@ const ThreeCanvas = () => {
         const particles = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particles);
 
-        const ambientLight = new THREE.AmbientLight(0x404040, 2);
+        const ambientLight = new THREE.AmbientLight(0x404040, 3);
         scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        directionalLight.position.set(1, 1, 1);
+        scene.add(directionalLight);
+
         const pointLight = new THREE.PointLight(0x8b5cf6, 2, 50);
-        pointLight.position.set(0, 5, 0);
+        pointLight.position.set(0, 5, 5);
         scene.add(pointLight);
 
         const clock = new THREE.Clock();
@@ -1169,8 +1533,6 @@ const ThreeCanvas = () => {
                 cube.mesh.rotation.x = cube.initialRot.x + Math.sin(elapsed + i) * 0.2;
                 cube.mesh.rotation.y = cube.initialRot.y + elapsed * 0.3;
                 cube.mesh.rotation.z = cube.initialRot.z + Math.cos(elapsed + i) * 0.15;
-                const scale = 1 + Math.sin(elapsed * 2 + i) * 0.05;
-                cube.mesh.scale.set(scale, scale, scale);
             });
             
             const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1248,18 +1610,23 @@ const CustomCursor = () => {
 
         window.addEventListener('mousemove', handleMouseMove);
         
-        const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .glow-card, .faq-question');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', handleMouseEnter);
-            el.addEventListener('mouseleave', handleMouseLeave);
-        });
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
+        // Use a mutation observer to re-apply listeners when the DOM changes
+        const observer = new MutationObserver((mutations) => {
+            const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .glow-card, .faq-question, .work-card');
             interactiveElements.forEach(el => {
                 el.removeEventListener('mouseenter', handleMouseEnter);
                 el.removeEventListener('mouseleave', handleMouseLeave);
+                el.addEventListener('mouseenter', handleMouseEnter);
+                el.addEventListener('mouseleave', handleMouseLeave);
             });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            observer.disconnect();
         };
     }, []);
 
@@ -1279,6 +1646,10 @@ const CustomCursor = () => {
 export default function App() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeFaq, setActiveFaq] = useState(0);
+    const [view, setView] = useState('home');
+    const [selectedService, setSelectedService] = useState(null);
+    const [isPageFading, setIsPageFading] = useState(false);
+    const [rotatingCardId, setRotatingCardId] = useState(null);
 
     const faqData = [
         { q: "What kind of e-commerce platforms do you work with?", a: "We're experts in Shopify, Shopify Plus, Magento, WooCommerce, and BigCommerce. We also build completely custom, headless e-commerce solutions for unique business needs." },
@@ -1290,6 +1661,36 @@ export default function App() {
     const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
     const closeMenu = () => setIsMenuOpen(false);
 
+    const handleServiceClick = (service, e) => {
+        if (rotatingCardId) return; // Prevent clicking while animating
+        
+        setRotatingCardId(service.id);
+        
+        setTimeout(() => {
+            setIsPageFading(true);
+        }, 400); // Start fading page after rotation starts
+
+        setTimeout(() => {
+            setSelectedService(service);
+            setView('serviceDetail');
+            window.scrollTo(0, 0);
+            setIsPageFading(false); // New page will fade in via CSS animation
+            setRotatingCardId(null);
+        }, 900); // 400ms delay + 500ms fade duration
+    };
+
+    const handleBackToHome = () => {
+        if (isPageFading) return;
+        setIsPageFading(true);
+        
+        setTimeout(() => {
+            setView('home');
+            setSelectedService(null);
+            // Let the home page fade back in naturally
+             setTimeout(() => setIsPageFading(false), 50);
+        }, 500); // fade duration
+    };
+
     return (
         <>
             <Style />
@@ -1297,337 +1698,278 @@ export default function App() {
             <Header onMenuToggle={handleMenuToggle} isMenuOpen={isMenuOpen} />
             <MobileNav isOpen={isMenuOpen} onLinkClick={closeMenu} />
             <ThreeCanvas />
+            
+            <div className={`page-wrapper ${isPageFading ? 'fading' : ''}`}>
+              {view === 'home' && (
+                  <>
+                      <main className="content-wrapper">
+                          <section className="section" id="home">
+                              <AnimatedComponent>
+                                  <div className="hero-content">
+                                      <div className="badge"><span>Architects of Digital Commerce</span></div>
+                                      <h1 className="hero-title">
+                                          <span className="gradient-text-1">Crafting E-commerce</span><br />
+                                          <span style={{ color: 'white' }}>That Truly</span><br />
+                                          <span className="gradient-text-2">Converts</span>
+                                      </h1>
+                                      <p className="hero-description">
+                                          We are the architects behind high-growth online brands. We don’t just build stores; we engineer scalable e-commerce ecosystems that drive revenue and define markets.
+                                      </p>
+                                      <div className="button-group">
+                                          <a href="#contact" className="primary-button">
+                                              <span>Engineer Your Growth</span>
+                                              <span>→</span>
+                                          </a>
+                                          <a href="#work" className="secondary-button">See Our Blueprints</a>
+                                      </div>
+                                  </div>
+                              </AnimatedComponent>
+                          </section>
 
-            <main className="content-wrapper">
-                <section className="section" id="home">
-                    <AnimatedComponent>
-                        <div className="hero-content">
-                            <div className="badge"><span>Your Growth Partner is Here</span></div>
-                            <h1 className="hero-title">
-                                <span className="gradient-text-1">Building E-commerce</span><br />
-                                <span style={{ color: 'white' }}>Empires, One</span><br />
-                                <span className="gradient-text-2">Click at a Time</span>
-                            </h1>
-                            <p className="hero-description">
-                                We're not just developers; we're your strategic partners in carving out a dominant online presence. From bespoke storefronts to game-changing apps, we build solutions that sell.
-                            </p>
-                            <div className="button-group">
-                                <a href="#contact" className="primary-button">
-                                    <span>Start Your Project</span>
-                                    <span>→</span>
-                                </a>
-                                <a href="#work" className="secondary-button">View Our Work</a>
-                            </div>
-                        </div>
-                    </AnimatedComponent>
-                </section>
+                          <section className="section">
+                              <div className="stats-grid">
+                                  <AnimatedComponent delay={1}><GlowCard className="stat-card"><div className="stat-number">1,200+</div><div className="stat-label">Projects Delivered</div></GlowCard></AnimatedComponent>
+                                  <AnimatedComponent delay={2}><GlowCard className="stat-card"><div className="stat-number">99%</div><div className="stat-label">Client Satisfaction</div></GlowCard></AnimatedComponent>
+                                  <AnimatedComponent delay={3}><GlowCard className="stat-card"><div className="stat-number">$500M+</div><div className="stat-label">Client Revenue Generated</div></GlowCard></AnimatedComponent>
+                                  <AnimatedComponent delay={4}><GlowCard className="stat-card"><div className="stat-number">150+</div><div className="stat-label">Global Team Members</div></GlowCard></AnimatedComponent>
+                              </div>
+                          </section>
+                          
+                          <section className="section" id="services">
+                              <AnimatedComponent>
+                                  <div className="section-header">
+                                      <h2 className="section-title">Our Arsenal of Services</h2>
+                                      <p className="section-subtitle">A complete suite of services to build, launch, and scale your digital venture to new heights.</p>
+                                  </div>
+                              </AnimatedComponent>
+                               <div className="services-grid">
+                                  {servicesData.map((service, index) => (
+                                    <AnimatedComponent delay={(index % 3) + 1} key={service.id}>
+                                         <GlowCard 
+                                           className={`service-card ${rotatingCardId === service.id ? 'rotating' : ''}`}
+                                           onClick={(e) => handleServiceClick(service, e)}
+                                         >
+                                            <div>
+                                                <div className="service-card-header">
+                                                    <h3 className="service-title">{service.title}</h3>
+                                                    <div className="service-icon">{service.icon}</div>
+                                                </div>
+                                                <ul className="service-features">
+                                                    {service.features.map(f => <li key={f}>{f}</li>)}
+                                                </ul>
+                                                <div className="service-deliverables">
+                                                    <h4>What We Deliver:</h4>
+                                                    <p>{service.deliverables}</p>
+                                                </div>
+                                            </div>
+                                            <div className="service-tech">
+                                                <strong>Key Tech:</strong> {service.tech}
+                                            </div>
+                                        </GlowCard>
+                                    </AnimatedComponent>
+                                  ))}
+                              </div>
+                          </section>
+                          
+                          <section className="section" id="work">
+                              <AnimatedComponent>
+                                   <div className="section-header">
+                                      <h2 className="section-title">Forging Digital Triumphs</h2>
+                                      <p className="section-subtitle">We don't just build projects; we craft success stories. Here's a glimpse of our impact.</p>
+                                  </div>
+                              </AnimatedComponent>
+                              <div className="work-grid">
+                                  <div className="work-card">
+                                      <img src="https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Aura Cosmetics" className="work-card-bg" />
+                                      <video className="work-card-video" src="https://assets.mixkit.co/videos/preview/mixkit-bright-orange-liquid-in-slow-motion-24200-large.mp4" autoPlay loop muted playsInline></video>
+                                      <div className="work-card-overlay">
+                                          <div className="work-card-content">
+                                              <h3 className="work-card-title">Aura Cosmetics</h3>
+                                              <p className="work-card-desc">Headless Shopify Plus store delivering a 200% conversion uplift and sub-second page loads.</p>
+                                              <a href="#!" className="secondary-button" style={{padding: '10px 20px', fontSize: '14px'}}>View Case Study</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div className="work-card">
+                                      <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Quantum Analytics" className="work-card-bg" />
+                                      <video className="work-card-video" src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-scrolling-numbers-and-letters-30230-large.mp4" autoPlay loop muted playsInline></video>
+                                      <div className="work-card-overlay">
+                                          <div className="work-card-content">
+                                              <h3 className="work-card-title">Quantum Analytics</h3>
+                                              <p className="work-card-desc">A data-intensive SaaS platform built with Next.js for real-time insights and visualizations.</p>
+                                              <a href="#!" className="secondary-button" style={{padding: '10px 20px', fontSize: '14px'}}>View Case Study</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div className="work-card">
+                                      <img src="https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="FitFlow AI" className="work-card-bg" />
+                                      <video className="work-card-video" src="https://assets.mixkit.co/videos/preview/mixkit-man-runs-on-a-treadmill-4509-large.mp4" autoPlay loop muted playsInline></video>
+                                      <div className="work-card-overlay">
+                                          <div className="work-card-content">
+                                              <h3 className="work-card-title">FitFlow AI</h3>
+                                              <p className="work-card-desc">An AI-powered fitness coaching app on iOS and Android with personalized workout plans.</p>
+                                              <a href="#!" className="secondary-button" style={{padding: '10px 20px', fontSize: '14px'}}>View Case Study</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                   <div className="work-card">
+                                      <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Project Collab" className="work-card-bg" />
+                                      <video className="work-card-video" src="https://assets.mixkit.co/videos/preview/mixkit-abstract-white-waves-in-circular-motion-24647-large.mp4" autoPlay loop muted playsInline></video>
+                                      <div className="work-card-overlay">
+                                          <div className="work-card-content">
+                                              <h3 className="work-card-title">Project Collab</h3>
+                                              <p className="work-card-desc">A real-time collaborative platform for enterprise teams, enhancing productivity by 40%.</p>
+                                              <a href="#!" className="secondary-button" style={{padding: '10px 20px', fontSize: '14px'}}>View Case Study</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </section>
 
-                <section className="section">
-                    <div className="stats-grid">
-                        <AnimatedComponent delay={1}><GlowCard className="stat-card"><div className="stat-number">1,200+</div><div className="stat-label">Projects Delivered</div></GlowCard></AnimatedComponent>
-                        <AnimatedComponent delay={2}><GlowCard className="stat-card"><div className="stat-number">99%</div><div className="stat-label">Client Satisfaction</div></GlowCard></AnimatedComponent>
-                        <AnimatedComponent delay={3}><GlowCard className="stat-card"><div className="stat-number">$500M+</div><div className="stat-label">Client Revenue Generated</div></GlowCard></AnimatedComponent>
-                        <AnimatedComponent delay={4}><GlowCard className="stat-card"><div className="stat-number">150+</div><div className="stat-label">Global Team Members</div></GlowCard></AnimatedComponent>
-                    </div>
-                </section>
-                
-                <section className="section" id="services">
-                    <AnimatedComponent>
-                        <div className="section-header">
-                            <h2 className="section-title">Our Arsenal of Services</h2>
-                            <p className="section-subtitle">A complete suite of services to build, launch, and scale your digital venture to new heights.</p>
-                        </div>
-                    </AnimatedComponent>
-                     <div className="services-grid">
-                        <AnimatedComponent delay={1}>
-                            <GlowCard className="service-card">
-                                <div>
-                                    <div className="service-card-header">
-                                        <h3 className="service-title">E-commerce Solutions</h3>
-                                        <div className="service-icon"><CartIcon /></div>
-                                    </div>
-                                    <ul className="service-features">
-                                        <li>Custom Theme Development</li>
-                                        <li>App & API Integration</li>
-                                        <li>Performance Optimization</li>
-                                        <li>Subscription Models</li>
-                                    </ul>
-                                    <div className="service-deliverables">
-                                        <h4>What We Deliver:</h4>
-                                        <p>A high-converting, lightning-fast storefront with a seamless checkout experience and a scalable backend architecture.</p>
-                                    </div>
-                                </div>
-                                <div className="service-tech">
-                                    <strong>Key Tech:</strong> Shopify, Magento, React, Vue
-                                </div>
-                            </GlowCard>
-                        </AnimatedComponent>
-                        <AnimatedComponent delay={2}>
-                             <GlowCard className="service-card">
-                                <div>
-                                    <div className="service-card-header">
-                                        <h3 className="service-title">Web Development</h3>
-                                        <div className="service-icon"><CodeIcon /></div>
-                                    </div>
-                                    <ul className="service-features">
-                                        <li>Headless CMS Architecture</li>
-                                        <li>Progressive Web Apps (PWA)</li>
-                                        <li>API Development & Integration</li>
-                                        <li>Ongoing Maintenance & Support</li>
-                                    </ul>
-                                     <div className="service-deliverables">
-                                        <h4>What We Deliver:</h4>
-                                        <p>Blazing-fast, secure, and SEO-friendly websites that provide an exceptional user experience across all devices.</p>
-                                    </div>
-                                </div>
-                                <div className="service-tech">
-                                    <strong>Key Tech:</strong> React, Node.js, Vercel, AWS
-                                </div>
-                            </GlowCard>
-                        </AnimatedComponent>
-                        <AnimatedComponent delay={3}>
-                             <GlowCard className="service-card">
-                                <div>
-                                    <div className="service-card-header">
-                                        <h3 className="service-title">App Development</h3>
-                                        <div className="service-icon"><SmartphoneIcon /></div>
-                                    </div>
-                                    <ul className="service-features">
-                                        <li>Native iOS & Android</li>
-                                        <li>Cross-Platform (React Native)</li>
-                                        <li>UI/UX Prototyping & Design</li>
-                                        <li>App Store Submission</li>
-                                    </ul>
-                                     <div className="service-deliverables">
-                                        <h4>What We Deliver:</h4>
-                                        <p>Beautiful, intuitive mobile applications that engage users and extend the reach of your brand right into their pockets.</p>
-                                    </div>
-                                </div>
-                                <div className="service-tech">
-                                    <strong>Key Tech:</strong> Swift, Kotlin, React Native
-                                </div>
-                            </GlowCard>
-                        </AnimatedComponent>
-                        <AnimatedComponent delay={1}>
-                             <GlowCard className="service-card">
-                                <div>
-                                    <div className="service-card-header">
-                                        <h3 className="service-title">Game Development</h3>
-                                        <div className="service-icon"><GamepadIcon /></div>
-                                    </div>
-                                    <ul className="service-features">
-                                        <li>Unity & Unreal Engine</li>
-                                        <li>WebGL-based Web Games</li>
-                                        <li>3D Modeling & Asset Creation</li>
-                                        <li>Multiplayer Integration</li>
-                                    </ul>
-                                     <div className="service-deliverables">
-                                        <h4>What We Deliver:</h4>
-                                        <p>Immersive gaming experiences for web and mobile that captivate players and build dedicated communities.</p>
-                                    </div>
-                                </div>
-                                <div className="service-tech">
-                                    <strong>Key Tech:</strong> Unity, C#, Blender, Photon
-                                </div>
-                            </GlowCard>
-                        </AnimatedComponent>
-                        <AnimatedComponent delay={2}>
-                            <GlowCard className="service-card">
-                                <div>
-                                    <div className="service-card-header">
-                                        <h3 className="service-title">Cloud Solutions</h3>
-                                        <div className="service-icon"><CloudIcon /></div>
-                                    </div>
-                                    <ul className="service-features">
-                                        <li>AWS/GCP/Azure Infrastructure</li>
-                                        <li>Serverless & Microservices</li>
-                                        <li>CI/CD Automation Pipelines</li>
-                                        <li>Database Management</li>
-                                    </ul>
-                                     <div className="service-deliverables">
-                                        <h4>What We Deliver:</h4>
-                                        <p>Robust, scalable, and secure cloud infrastructure that ensures your application is always available and performs under pressure.</p>
-                                    </div>
-                                </div>
-                                <div className="service-tech">
-                                    <strong>Key Tech:</strong> Docker, Kubernetes, Terraform
-                                </div>
-                            </GlowCard>
-                        </AnimatedComponent>
-                        <AnimatedComponent delay={3}>
-                           <GlowCard className="service-card">
-                                <div>
-                                    <div className="service-card-header">
-                                        <h3 className="service-title">Growth Marketing</h3>
-                                        <div className="service-icon"><ArrowUpIcon /></div>
-                                    </div>
-                                    <ul className="service-features">
-                                        <li>Technical SEO Audits</li>
-                                        <li>Paid Social & SEM Campaigns</li>
-                                        <li>Content Strategy & Creation</li>
-                                        <li>Conversion Rate Optimization</li>
-                                    </ul>
-                                     <div className="service-deliverables">
-                                        <h4>What We Deliver:</h4>
-                                        <p>Data-driven marketing strategies that drive targeted traffic, increase conversions, and deliver a measurable return on investment.</p>
-                                    </div>
-                                </div>
-                                <div className="service-tech">
-                                    <strong>Tools:</strong> Ahrefs, GA4, Figma, Hotjar
-                                </div>
-                            </GlowCard>
-                        </AnimatedComponent>
-                    </div>
-                </section>
+                          <section className="section" id="about">
+                              <div className="about-container">
+                                  <AnimatedComponent delay={1}><div className="about-image"><GlobeIcon /></div></AnimatedComponent>
+                                  <AnimatedComponent delay={2}>
+                                      <div className="about-content">
+                                          <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '30px' }}>We're Ecom Buddy</h2>
+                                          <p className="hero-description" style={{ textAlign: 'left', marginLeft: 0, maxWidth: '100%' }}>
+                                              Founded by e-commerce veterans, Ecom Buddy was born from a simple idea: to be the ultimate technical and strategic partner for ambitious brands. We fuse creativity with code, and data with design, to build digital experiences that don't just look good—they perform, convert, and scale.
+                                          </p>
+                                          <a href="#contact" className="secondary-button">Partner With Us</a>
+                                      </div>
+                                  </AnimatedComponent>
+                              </div>
+                          </section>
+                          
+                          <section className="section" id="faq">
+                              <AnimatedComponent>
+                                  <div className="section-header">
+                                      <h2 className="section-title">Have Questions?</h2>
+                                      <p className="section-subtitle">We have answers. Here are some of the most common questions we get from partners like you.</p>
+                                  </div>
+                              </AnimatedComponent>
+                              <div className="faq-container">
+                                  <AnimatedComponent delay={1}>
+                                      <div className="faq-accordion">
+                                          {faqData.map((faq, index) => (
+                                              <FAQItem key={index} index={index} question={faq.q} answer={faq.a} activeIndex={activeFaq} setActiveIndex={setActiveFaq} />
+                                          ))}
+                                      </div>
+                                  </AnimatedComponent>
+                                  <AnimatedComponent delay={2}>
+                                      <div className="faq-trust-panel">
+                                          <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Abstract trust background" />
+                                          <div className="faq-trust-overlay">
+                                              <h3>Your Trusted Partner in Growth</h3>
+                                              <div className="trust-indicators">
+                                                  <span className="trust-indicator">Shopify Plus Partner</span>
+                                                  <span className="trust-indicator">Meta Business Partner</span>
+                                                  <span className="trust-indicator">Google Partner</span>
+                                              </div>
+                                              <a href="#contact" className="primary-button">Discuss Your Project</a>
+                                          </div>
+                                      </div>
+                                  </AnimatedComponent>
+                              </div>
+                          </section>
+                          
+                          <section className="section" id="contact">
+                              <AnimatedComponent>
+                                  <div className="section-header">
+                                      <h2 className="section-title">Let's Build Something Great</h2>
+                                      <p className="section-subtitle">Ready to start? Drop us a line and one of our experts will get back to you within 24 hours.</p>
+                                  </div>
+                              </AnimatedComponent>
+                              <AnimatedComponent delay={1}>
+                                  <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+                                      <div className="form-group"><UserIcon /><input type="text" placeholder="Your Name" required /></div>
+                                      <div className="form-group"><MailIcon /><input type="email" placeholder="Your Email" required /></div>
+                                      <div className="form-group"><BuildingIcon /><input type="text" placeholder="Company Name" /></div>
+                                      <div className="form-group"><PhoneIcon /><input type="tel" placeholder="Phone Number" /></div>
+                                      <div className="form-group">
+                                          <DollarSignIcon />
+                                          <select required defaultValue="">
+                                              <option value="" disabled>Project Budget</option>
+                                              <option value="<10k">Less than $10,000</option>
+                                              <option value="10-25k">$10,000 - $25,000</option>
+                                              <option value="25-50k">$25,000 - $50,000</option>
+                                              <option value="50k+">$50,000+</option>
+                                          </select>
+                                      </div>
+                                       <div className="form-group">
+                                          <UsersIcon />
+                                          <select required defaultValue="">
+                                              <option value="" disabled>How did you find us?</option>
+                                              <option value="google">Google Search</option>
+                                              <option value="social">Social Media</option>
+                                              <option value="referral">Referral</option>
+                                              <option value="other">Other</option>
+                                          </select>
+                                      </div>
+                                      <div className="form-group"><textarea placeholder="Tell us about your project..." required style={{padding: '15px'}}></textarea></div>
+                                      <button type="submit" className="primary-button" style={{ width: '100%', justifyContent: 'center' }}>
+                                          <span>Send Message</span><span>→</span>
+                                      </button>
+                                  </form>
+                              </AnimatedComponent>
+                          </section>
+                      </main>
+                      <Footer />
+                  </>
+                )}
 
-                <section className="section" id="work">
-                    <AnimatedComponent>
-                         <div className="section-header">
-                            <h2 className="section-title">Our Digital Footprint</h2>
-                            <p className="section-subtitle">We don't just build projects; we build success stories. Here's a glimpse of our impact.</p>
-                        </div>
-                    </AnimatedComponent>
-                    <div className="work-grid">
-                         <AnimatedComponent delay={1}><GlowCard className="work-card" style={{ padding: 0 }}><img src="/cosmetics-store.webp" alt="Shopify Store" /><div className="work-card-content"><h3 className="work-card-title">Aura Cosmetics</h3><p className="work-card-desc">Shopify Plus migration resulting in a 200% conversion uplift.</p></div></GlowCard></AnimatedComponent>
-                         <AnimatedComponent delay={2}><GlowCard className="work-card" style={{ padding: 0 }}><img src="/game-app.webp" alt="Mobile Game" /><div className="work-card-content"><h3 className="work-card-title">Galaxy Raiders</h3><p className="work-card-desc">Mobile strategy game with 1M+ downloads in the first six months.</p></div></GlowCard></AnimatedComponent>
-                         <AnimatedComponent delay={3}><GlowCard className="work-card" style={{ padding: 0 }}><img src="/fitness-ai.webp" alt="Fitness App" /><div className="work-card-content"><h3 className="work-card-title">FitFlow AI</h3><p className="work-card-desc">An AI-powered fitness app with personalized workout plans.</p></div></GlowCard></AnimatedComponent>
-                    </div>
-                </section>
-
-                <section className="section" id="about">
-                    <div className="about-container">
-                        <AnimatedComponent delay={1}><div className="about-image"><GlobeIcon /></div></AnimatedComponent>
-                        <AnimatedComponent delay={2}>
-                            <div className="about-content">
-                                <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '30px' }}>We're Ecom Buddy</h2>
-                                <p className="hero-description" style={{ textAlign: 'left', marginLeft: 0, maxWidth: '100%' }}>
-                                    Founded by e-commerce veterans, Ecom Buddy was born from a simple idea: to be the ultimate technical and strategic partner for ambitious brands. We fuse creativity with code, and data with design, to build digital experiences that don't just look good—they perform, convert, and scale.
-                                </p>
-                                <a href="#contact" className="secondary-button">Partner With Us</a>
-                            </div>
-                        </AnimatedComponent>
-                    </div>
-                </section>
-                
-                <section className="section" id="faq">
-                    <AnimatedComponent>
-                        <div className="section-header">
-                            <h2 className="section-title">Have Questions?</h2>
-                            <p className="section-subtitle">We have answers. Here are some of the most common questions we get from partners like you.</p>
-                        </div>
-                    </AnimatedComponent>
-                    <div className="faq-container">
-                        <AnimatedComponent delay={1}>
-                            <div className="faq-accordion">
-                                {faqData.map((faq, index) => (
-                                    <FAQItem key={index} index={index} question={faq.q} answer={faq.a} activeIndex={activeFaq} setActiveIndex={setActiveFaq} />
-                                ))}
-                            </div>
-                        </AnimatedComponent>
-                        <AnimatedComponent delay={2}>
-                            <div className="faq-trust-panel">
-                                <img src="/main-image.png" alt="Abstract trust background" />
-                                <div className="faq-trust-overlay">
-                                    <h3>Your Trusted Partner in Growth</h3>
-                                    <div className="trust-indicators">
-                                        <span className="trust-indicator">Shopify Plus Partner</span>
-                                        <span className="trust-indicator">Meta Business Partner</span>
-                                        <span className="trust-indicator">Google Partner</span>
-                                    </div>
-                                    <a href="#contact" className="primary-button">Discuss Your Project</a>
-                                </div>
-                            </div>
-                        </AnimatedComponent>
-                    </div>
-                </section>
-                
-                <section className="section" id="contact">
-                    <AnimatedComponent>
-                        <div className="section-header">
-                            <h2 className="section-title">Let's Build Something Great</h2>
-                            <p className="section-subtitle">Ready to start? Drop us a line and one of our experts will get back to you within 24 hours.</p>
-                        </div>
-                    </AnimatedComponent>
-                    <AnimatedComponent delay={1}>
-                        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-                            <div className="form-group"><UserIcon /><input type="text" placeholder="Your Name" required /></div>
-                            <div className="form-group"><MailIcon /><input type="email" placeholder="Your Email" required /></div>
-                            <div className="form-group"><BuildingIcon /><input type="text" placeholder="Company Name" /></div>
-                            <div className="form-group"><PhoneIcon /><input type="tel" placeholder="Phone Number" /></div>
-                            <div className="form-group">
-                                <DollarSignIcon />
-                                <select required>
-                                    <option value="" disabled selected>Project Budget</option>
-                                    <option value="<10k">Less than $10,000</option>
-                                    <option value="10-25k">$10,000 - $25,000</option>
-                                    <option value="25-50k">$25,000 - $50,000</option>
-                                    <option value="50k+">$50,000+</option>
-                                </select>
-                            </div>
-                             <div className="form-group">
-                                <UsersIcon />
-                                <select required>
-                                    <option value="" disabled selected>How did you find us?</option>
-                                    <option value="google">Google Search</option>
-                                    <option value="social">Social Media</option>
-                                    <option value="referral">Referral</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div className="form-group"><textarea placeholder="Tell us about your project..." required style={{padding: '15px'}}></textarea></div>
-                            <button type="submit" className="primary-button" style={{ width: '100%', justifyContent: 'center' }}>
-                                <span>Send Message</span><span>→</span>
-                            </button>
-                        </form>
-                    </AnimatedComponent>
-                </section>
-            </main>
-
-            <footer>
-                <div className="footer-grid">
-                    <div className="footer-section">
-                        <h3>ABOUT ECOM BUDDY</h3>
-                        <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: 1.6 }}>
-                            Your dedicated partner in building and scaling successful digital ventures and e-commerce empires.
-                        </p>
-                    </div>
-                    <div className="footer-section">
-                        <h3>QUICK LINKS</h3>
-                        <ul>
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#about">About Us</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div className="footer-section">
-                        <h3>SERVICES</h3>
-                        <ul>
-                            <li><a href="#services">E-commerce Solutions</a></li>
-                            <li><a href="#services">Web Development</a></li>
-                            <li><a href="#services">App Development</a></li>
-                            <li><a href="#services">Game Development</a></li>
-                        </ul>
-                    </div>
-                    <div className="footer-section">
-                        <h3>CONNECT</h3>
-                        <ul>
-                            <li><a href="#!">📍 Digital Realm, Sector 0x00</a></li>
-                            <li><a href="mailto:contact@ecombuddy.agency">📧 contact@ecombuddy.agency</a></li>
-                            <li><a href="#!">🌐 www.ecombuddy.agency</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="footer-bottom">
-                    <p>© 2025 Ecom Buddy. All rights reserved. | Built with React & Three.js</p>
-                    <div className="footer-links">
-                        <a href="#!">Privacy Policy</a>
-                        <a href="#!">Terms of Service</a>
-                        <a href="#!">Cookies</a>
-                    </div>
-                </div>
-            </footer>
+                {view === 'serviceDetail' && (
+                    <ServiceDetailPage service={selectedService} onBack={handleBackToHome} />
+                )}
+            </div>
         </>
     );
 }
+
+const Footer = () => (
+  <footer>
+      <div className="footer-grid">
+          <div className="footer-section">
+              <h3>ABOUT ECOM BUDDY</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: 1.6 }}>
+                  Your dedicated partner in building and scaling successful digital ventures and e-commerce empires.
+              </p>
+          </div>
+          <div className="footer-section">
+              <h3>QUICK LINKS</h3>
+              <ul>
+                  <li><a href="#home">Home</a></li>
+                  <li><a href="#about">About Us</a></li>
+                  <li><a href="#services">Services</a></li>
+                  <li><a href="#contact">Contact</a></li>
+              </ul>
+          </div>
+          <div className="footer-section">
+              <h3>SERVICES</h3>
+              <ul>
+                  <li><a href="#services">E-commerce Solutions</a></li>
+                  <li><a href="#services">Web Development</a></li>
+                  <li><a href="#services">App Development</a></li>
+                  <li><a href="#services">Game Development</a></li>
+              </ul>
+          </div>
+          <div className="footer-section">
+              <h3>CONNECT</h3>
+              <ul>
+                  <li><a href="#!">📍 Digital Realm, Sector 0x00</a></li>
+                  <li><a href="mailto:contact@ecombuddy.agency">📧 contact@ecombuddy.agency</a></li>
+                  <li><a href="#!">🌐 www.ecombuddy.agency</a></li>
+              </ul>
+          </div>
+      </div>
+      <div className="footer-bottom">
+          <p>© 2025 Ecom Buddy. All rights reserved. | Built with React & Three.js</p>
+          <div className="footer-links">
+              <a href="#!">Privacy Policy</a>
+              <a href="#!">Terms of Service</a>
+              <a href="#!">Cookies</a>
+          </div>
+      </div>
+  </footer>
+);
 
