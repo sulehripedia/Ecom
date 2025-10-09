@@ -106,168 +106,6 @@ const Style = () => (
         }
     }
 
-    /* Header & Navigation */
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        background: linear-gradient(180deg, rgba(5, 5, 16, 0.7), rgba(5, 5, 16, 0.4));
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-        padding: 5px 0;
-    }
-
-    .header-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 20px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo-container {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        text-decoration: none;
-    }
-
-    .logo-icon {
-        width: 48px;
-        height: 48px;
-        background: linear-gradient(135deg, var(--brand-purple), var(--brand-pink));
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        padding: 10px;
-        transition: transform 0.3s;
-    }
-    .logo-container:hover .logo-icon {
-        transform: rotate(-10deg) scale(1.1);
-    }
-
-    .logo-text h1 {
-        font-size: 24px;
-        font-weight: 600;
-        background: linear-gradient(90deg, var(--brand-light-purple), var(--brand-pink));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-    }
-
-    .logo-text p {
-        font-size: 12px;
-        color: var(--text-muted);
-    }
-
-    nav {
-        display: flex;
-        align-items: center;
-        gap: 40px;
-    }
-
-    nav a {
-        color: rgba(167, 139, 250, 0.8);
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        transition: color 0.3s;
-        position: relative;
-    }
-    nav a:not(.cta-button)::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 1px;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: var(--brand-light-purple);
-        transition: all 0.3s;
-    }
-    nav a:hover:not(.cta-button)::after {
-        width: 100%;
-    }
-
-
-    nav a:hover {
-        color: var(--brand-light-purple);
-    }
-
-    .cta-button {
-        padding: 10px 24px;
-        background: linear-gradient(90deg, var(--brand-purple), var(--brand-pink));
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 500;
-        transition: all 0.3s;
-    }
-
-    .cta-button:hover {
-        box-shadow: 0 10px 40px rgba(139, 92, 246, 0.5);
-    }
-    
-    /* Mobile Menu */
-    .mobile-menu-button {
-        display: none;
-        z-index: 1001;
-        background: none;
-        border: none;
-    }
-    
-    .mobile-menu-button .line {
-        width: 28px;
-        height: 2px;
-        background-color: var(--brand-light-purple);
-        margin: 6px 0;
-        transition: transform 0.3s, opacity 0.3s;
-    }
-    
-    .mobile-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(5, 5, 16, 0.95);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 40px;
-        transform: translateY(-100%);
-        transition: transform 0.4s ease-in-out;
-    }
-
-    .mobile-nav.active {
-        transform: translateY(0);
-    }
-
-    .mobile-nav a {
-        font-size: 24px;
-        color: var(--brand-light-purple);
-        text-decoration: none;
-    }
-    
-    .mobile-menu-button.active .line1 {
-        transform: rotate(-45deg) translate(-7px, 6px);
-    }
-    .mobile-menu-button.active .line2 {
-        opacity: 0;
-    }
-    .mobile-menu-button.active .line3 {
-        transform: rotate(45deg) translate(-7px, -6px);
-    }
-
     /* 3D Canvas */
     #canvas-container {
         position: fixed;
@@ -417,6 +255,7 @@ const Style = () => (
         position: relative;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
         backdrop-filter: blur(20px);
+        border: 1px solid;
         border-image-source: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
         border-image-slice: 1;
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
@@ -526,14 +365,14 @@ const Style = () => (
     }
 
     @keyframes rotate-out {
-      0% {
-        transform: rotateY(0deg) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: rotateY(360deg) scale(0.8);
-        opacity: 0;
-      }
+        0% {
+            transform: rotateY(0deg) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: rotateY(360deg) scale(0.8);
+            opacity: 0;
+        }
     }
 
 
@@ -543,10 +382,10 @@ const Style = () => (
     }
     
     .service-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
     }
 
     .service-icon {
@@ -573,21 +412,21 @@ const Style = () => (
     }
 
     .service-features {
-      list-style-type: none;
-      margin: 20px 0;
+        list-style-type: none;
+        margin: 20px 0;
     }
     .service-features li {
-      margin-bottom: 10px;
-      color: rgba(167, 139, 250, 0.8);
-      font-size: 15px;
-      display: flex;
-      align-items: center;
+        margin-bottom: 10px;
+        color: rgba(167, 139, 250, 0.8);
+        font-size: 15px;
+        display: flex;
+        align-items: center;
     }
     .service-features li::before {
-      content: '✓';
-      color: var(--brand-pink);
-      margin-right: 10px;
-      font-weight: bold;
+        content: '✓';
+        color: var(--brand-pink);
+        margin-right: 10px;
+        font-weight: bold;
     }
     
     .service-deliverables {
@@ -609,15 +448,15 @@ const Style = () => (
 
 
     .service-tech {
-      font-size: 12px;
-      color: var(--text-muted);
-      border-top: 1px solid rgba(139, 92, 246, 0.2);
-      padding-top: 15px;
-      margin-top: auto; /* Pushes to the bottom */
-      font-family: var(--font-display);
+        font-size: 12px;
+        color: var(--text-muted);
+        border-top: 1px solid rgba(139, 92, 246, 0.2);
+        padding-top: 15px;
+        margin-top: auto; /* Pushes to the bottom */
+        font-family: var(--font-display);
     }
     .service-tech strong {
-      color: var(--brand-light-purple);
+        color: var(--brand-light-purple);
     }
     
     /* Service/Project Detail Page */
@@ -632,23 +471,26 @@ const Style = () => (
     }
 
     @keyframes page-fade-in {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-    
+
     .back-button {
-      position: fixed;
-      top: 100px;
-      left: 40px;
-      z-index: 30;
-      background: var(--background-med);
-      border: 1px solid rgba(139, 92, 246, 0.3);
-      color: var(--brand-light-purple);
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-family: var(--font-body);
-      font-weight: 500;
-      transition: all 0.3s;
+        position: fixed;
+        top: 40px;
+        left: 40px;
+        z-index: 30;
+        background: var(--background-med);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        color: var(--brand-light-purple);
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-family: var(--font-body);
+        font-weight: 500;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
     .back-button:hover {
         background: var(--brand-purple);
@@ -656,8 +498,8 @@ const Style = () => (
     }
     
     .detail-content {
-      max-width: 1200px;
-      margin: 0 auto;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .detail-header {
@@ -694,125 +536,343 @@ const Style = () => (
         margin-bottom: 20px;
     }
     .detail-sidebar h4 {
-      margin-bottom: 15px;
-      color: var(--brand-light-purple);
+        margin-bottom: 15px;
+        color: var(--brand-light-purple);
     }
     .detail-projects .project-item {
         display: flex;
         align-items: center;
         gap: 15px;
         margin-bottom: 15px;
+        cursor: pointer;
+        transition: background .3s;
+        border-radius: 8px;
+        padding: 5px;
+    }
+    .detail-projects .project-item:hover {
+        background: var(--background-med);
     }
     .detail-projects img {
-      width: 50px;
-      height: 50px;
-      border-radius: 8px;
-      object-fit: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        object-fit: cover;
     }
     
-    .project-featured-image {
-        width: 100%;
-        height: 450px;
-        border-radius: 20px;
-        object-fit: cover;
-        margin-bottom: 40px;
-    }
-    .project-timeline {
-        display: flex;
-        gap: 30px;
-        margin-bottom: 30px;
-        font-family: var(--font-display);
-        color: var(--text-muted);
-    }
-
-    /* Work Section */
-    .work-grid {
+    /* NEW PROJECT CARD STYLES */
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      max-width: 1400px;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
       width: 100%;
+      max-width: 1400px;
     }
 
-    .work-card {
-      position: relative;
+    .project-card {
+      background: rgba(20, 20, 40, 0.6);
       border-radius: 20px;
       overflow: hidden;
-      height: 400px;
-      transition: all 0.5s ease;
-      background: #111;
+      border: 1px solid rgba(0, 240, 255, 0.2);
       cursor: pointer;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
     }
-    
-    .work-card:nth-child(1) { grid-column: 1 / 3; }
-    .work-card:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 3; height: 810px;}
-    .work-card:nth-child(3) { grid-column: 1 / 2; }
-    .work-card:nth-child(4) { grid-column: 2 / 3; }
 
-    .work-card-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 50px rgba(0, 240, 255, 0.2);
+    }
+
+    .card-image-container {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .card-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.4s ease;
     }
-    
-    .work-card:hover .work-card-bg {
+    .project-card:hover .card-image {
       transform: scale(1.1);
     }
 
-    .work-card-video {
+    .card-overlay {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .work-card-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: linear-gradient(to top, rgba(5, 5, 16, 0.9) 10%, rgba(5, 5, 16, 0.2) 70%, transparent 100%);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(255, 0, 255, 0.3));
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 30px;
+      align-items: center;
+      justify-content: center;
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.4s ease;
+      color: #fff;
     }
-    
-    .work-card:hover .work-card-overlay, .work-card:hover .work-card-video {
-        opacity: 1;
+    .project-card:hover .card-overlay {
+      opacity: 1;
     }
 
-    .work-card-content {
-      transform: translateY(20px);
-      transition: transform 0.5s ease;
+    .card-content {
+      padding: 25px;
     }
-    .work-card:hover .work-card-content {
-      transform: translateY(0);
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #00f0ff;
+      margin: 0;
+      flex: 1;
+    }
+
+    .card-category-badge {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      border: 1px solid;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .card-subtitle {
+      font-size: 0.95rem;
+      color: #b0b0d0;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .card-tag {
+      padding: 6px 12px;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 15px;
+      font-size: 0.8rem;
+      color: #00ff88;
     }
     
-    .work-card-title {
-        font-size: 28px;
-        margin-bottom: 10px;
-        font-weight: 600;
-        color: white;
-    }
-    .work-card-desc {
-         color: rgba(255, 255, 255, 0.8);
-         margin-bottom: 20px;
+    /* Project Detail Page Styles */
+    .project-detail-view {
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+      background: linear-gradient(135deg, #0a0a14 0%, #1a0a28 100%);
+      color: #fff;
+      padding: 30px 20px;
+      z-index: 50;
+      overflow: auto;
     }
     
+    .project-detail-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 80px;
+    }
+
+    .project-detail-header {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 50px;
+      border: 2px solid rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 40px rgba(0, 240, 255, 0.2);
+    }
+    .project-detail-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .project-detail-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px;
+      background: linear-gradient(to top, rgba(10, 10, 20, 0.95) 0%, transparent 100%);
+    }
+    .project-detail-title {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00f0ff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    .project-detail-subtitle {
+      font-size: 1.3rem;
+      color: #b0b0d0;
+      margin-bottom: 20px;
+    }
+    .project-detail-meta {
+      display: flex;
+      gap: 30px;
+      font-size: 0.95rem;
+      color: #00ff88;
+      flex-wrap: wrap;
+    }
+    .project-detail-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-detail-body {
+      background: rgba(20, 20, 40, 0.6);
+      border-radius: 20px;
+      padding: 50px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    .project-detail-section {
+      margin-bottom: 40px;
+    }
+    .project-detail-section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #00f0ff;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(0, 240, 255, 0.3);
+    }
+    .project-detail-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #d0d0e0;
+      margin-bottom: 15px;
+    }
+    .client-info {
+      padding: 15px 20px;
+      background: rgba(0, 240, 255, 0.05);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 10px;
+      color: #00f0ff;
+      font-size: 1rem;
+      margin-top: 15px;
+      display: inline-block;
+    }
+    .project-tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .project-detail-tag {
+      padding: 10px 20px;
+      background: rgba(255, 0, 255, 0.1);
+      border: 2px solid rgba(255, 0, 255, 0.4);
+      border-radius: 20px;
+      font-size: 0.95rem;
+      color: #ff00ff;
+      font-weight: 600;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px;
+      background: rgba(0, 255, 136, 0.05);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 10px;
+      color: #d0d0e0;
+      font-size: 1rem;
+    }
+    .feature-item svg {
+      color: #00ff88;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: rgba(68, 136, 255, 0.1);
+      border: 1px solid rgba(68, 136, 255, 0.3);
+      border-radius: 10px;
+      color: #4488ff;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .metrics-section, .testimonial-section {
+      margin-top: 50px;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .metric-card {
+      padding: 30px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 255, 0.1));
+      border: 2px solid rgba(0, 240, 255, 0.3);
+      border-radius: 15px;
+      text-align: center;
+      color: #00f0ff;
+    }
+    .metric-card h3 { margin: 10px 0; font-size: 1.2rem; }
+    .metric-card p { font-size: 1.5rem; font-weight: bold; color: white; }
+    
+    .testimonial-section {
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(255, 0, 255, 0.05), rgba(0, 240, 255, 0.05));
+      border: 2px solid rgba(255, 0, 255, 0.3);
+      border-radius: 15px;
+    }
+    .testimonial-blockquote {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #d0d0e0;
+      line-height: 1.8;
+      margin: 0;
+    }
+    .testimonial-blockquote footer {
+      margin-top: 20px;
+      font-style: normal;
+      font-weight: bold;
+      color: var(--brand-light-purple);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeOut {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(-20px); }
+    }
+    .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+    .fade-out { animation: fadeOut 0.5s ease-in forwards; }
+
     /* About Section */
     .about-container {
         display: flex;
@@ -985,87 +1045,14 @@ const Style = () => (
         color: white;
     }
 
-
-    /* Footer */
-    footer {
-        position: relative;
-        z-index: 10;
-        background: rgba(5, 5, 16, 0.9);
-        backdrop-filter: blur(20px);
-        border-top: 1px solid rgba(139, 92, 246, 0.2);
-        padding: 60px 40px 30px;
-    }
-
-    .footer-grid {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-        margin-bottom: 40px;
-    }
-
-    .footer-section h3 {
-        color: var(--brand-light-purple);
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-    }
-
-    .footer-section ul {
-        list-style: none;
-    }
-    .footer-section ul li {
-        margin-bottom: 12px;
-    }
-
-    .footer-section a, .footer-bottom a {
-        color: var(--text-muted);
-        text-decoration: none;
-        font-size: 14px;
-        transition: color 0.3s;
-    }
-
-    .footer-section a:hover, .footer-bottom a:hover {
-        color: var(--brand-light-purple);
-    }
-    
-    .footer-bottom {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding-top: 30px;
-        border-top: 1px solid rgba(139, 92, 246, 0.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-
-    .footer-bottom p {
-        color: rgba(167, 139, 250, 0.4);
-        font-size: 14px;
-    }
-
-    .footer-links {
-        display: flex;
-        gap: 30px;
-    }
-
     /* Responsive Design */
     @media (max-width: 1024px) {
         .stats-grid {
             grid-template-columns: repeat(2, 1fr);
         }
-        .about-container, .faq-container, .detail-grid, .work-grid {
+        .about-container, .faq-container, .detail-grid {
             grid-template-columns: 1fr;
             flex-direction: column;
-        }
-        .work-card, .work-card:nth-child(2) {
-          grid-column: auto;
-          grid-row: auto;
-          height: 400px;
         }
     }
 
@@ -1076,31 +1063,24 @@ const Style = () => (
         .section-title {
             font-size: 40px;
         }
-        header nav {
-            display: none;
-        }
-        .mobile-menu-button {
-            display: block;
-        }
         .stats-grid {
             grid-template-columns: 1fr;
         }
-        .footer-grid {
-            grid-template-columns: 1fr;
-        }
-        .footer-bottom {
-            flex-direction: column;
-            text-align: center;
-        }
          .detail-content {
-          padding: 60px 30px;
+            padding: 60px 30px;
         }
         .back-button {
-            top: 90px;
+            top: 20px;
             left: 20px;
         }
-       .services-grid {
-            grid-template-columns:100%;
+        .project-detail-header {
+          height: 300px;
+        }
+        .project-detail-title {
+          font-size: 2rem;
+        }
+        .project-detail-body {
+          padding: 30px;
         }
     }
   `}</style>
@@ -1119,7 +1099,14 @@ const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height
 const BuildingIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>;
 const PhoneIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>;
 const DollarSignIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>;
-const UsersIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>;
+const UsersIcon = ({size=20}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>;
+const ExternalLinkIcon = ({size=24}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>;
+const CalendarIcon = ({size=16}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>;
+const ClockIcon = ({size=16}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
+const AwardIcon = ({size=32}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 17 17 23 15.79 13.88"/></svg>;
+const CheckCircleIcon = ({size=20}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>;
+const ArrowLeftIcon = ({size=24}) => <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>;
+
 
 // --- DATA ---
 const servicesData = [
@@ -1133,8 +1120,8 @@ const servicesData = [
     description: "We build world-class e-commerce experiences that drive sales and foster customer loyalty. From Shopify Plus for enterprise brands to custom headless solutions, our focus is on creating a frictionless path from discovery to purchase. We optimize every step of the funnel, ensuring your store is not only beautiful but also a powerful sales engine.",
     tags: ["Shopify Plus", "Headless Commerce", "Conversion Rate Optimization", "Subscriptions", "UX/UI Design"],
     projects: [
-      { name: "Aura Cosmetics", img: "https://placehold.co/100x100/050510/a78bfa?text=Aura" },
-      { name: "Urban Threads", img: "https://placehold.co/100x100/050510/a78bfa?text=Urban" }
+      { id: 'aura', name: "Aura Cosmetics", img: "https://placehold.co/100x100/050510/a78bfa?text=Aura" },
+      { id: 'urban', name: "Urban Threads", img: "https://placehold.co/100x100/050510/a78bfa?text=Urban" }
     ],
     trust: ["Shopify Plus Partner"]
   },
@@ -1148,8 +1135,7 @@ const servicesData = [
     description: "Our web development goes beyond aesthetics. We build high-performance, scalable, and secure web applications using modern frameworks. Whether it's a corporate site with a headless CMS like Contentful or a complex Progressive Web App, we deliver robust solutions that are a pleasure to use and easy to manage.",
     tags: ["React/Next.js", "Jamstack", "PWA", "API First", "Web Performance"],
     projects: [
-      { name: "Quantum Analytics", img: "https://placehold.co/100x100/050510/ec4899?text=Quantum" },
-      { name: "Nexus Media", img: "https://placehold.co/100x100/050510/ec4899?text=Nexus" }
+      { id: 'quantum', name: "Quantum Analytics", img: "https://placehold.co/100x100/050510/ec4899?text=Quantum" },
     ],
     trust: ["Vercel Partner"]
   },
@@ -1163,8 +1149,7 @@ const servicesData = [
     description: "We design and develop mobile apps for iOS and Android that solve real-world problems and delight users. Our process is collaborative, starting with deep research and prototyping, and ending with a polished, market-ready product. We handle everything, including App Store submission and post-launch support.",
     tags: ["iOS (Swift)", "Android (Kotlin)", "React Native", "Firebase", "UX Research"],
     projects: [
-      { name: "FitFlow AI", img: "https://placehold.co/100x100/050510/8b5cf6?text=Fit" },
-      { name: "Connectly Social", img: "https://placehold.co/100x100/050510/8b5cf6?text=Connect" }
+      { id: 'fitflow', name: "FitFlow AI", img: "https://placehold.co/100x100/050510/8b5cf6?text=Fit" },
     ],
     trust: []
   },
@@ -1177,10 +1162,7 @@ const servicesData = [
     tech: "Unity, C#, Blender, Photon",
     description: "We bring interactive worlds to life. Our team has experience building everything from casual mobile games to more complex multiplayer experiences for the web. We cover the full development cycle: concept, game design, asset creation, programming, and deployment.",
     tags: ["Unity3D", "WebGL", "Multiplayer", "Game Design", "3D Art"],
-    projects: [
-      { name: "Galaxy Raiders", img: "https://placehold.co/100x100/050510/a78bfa?text=Galaxy" },
-      { name: "Pixel Dash", img: "https://placehold.co/100x100/050510/a78bfa?text=Pixel" }
-    ],
+    projects: [],
     trust: []
   },
   { 
@@ -1192,10 +1174,7 @@ const servicesData = [
     tech: "Docker, Kubernetes, Terraform",
     description: "A great application needs a solid foundation. We design and manage cloud infrastructure that is secure, scalable, and cost-effective. From setting up CI/CD pipelines for automated deployments to architecting serverless applications, we ensure your tech stack is ready for primetime.",
     tags: ["AWS", "Serverless", "DevOps", "CI/CD", "Infrastructure as Code"],
-    projects: [
-      { name: "DataStream Corp", img: "https://placehold.co/100x100/050510/ec4899?text=Data" },
-      { name: "CloudLeap", img: "https://placehold.co/100x100/050510/ec4899?text=Cloud" }
-    ],
+    projects: [],
     trust: ["AWS Certified"]
   },
   { 
@@ -1207,14 +1186,144 @@ const servicesData = [
     tech: "Ahrefs, GA4, Figma, Hotjar",
     description: "Building is only half the battle. Our growth marketing team helps you find and convert your ideal customers. We combine technical SEO, data-driven paid advertising, and compelling content to create a holistic strategy that turns your digital product into a cornerstone of your business growth.",
     tags: ["SEO", "PPC", "Content Marketing", "Data Analytics", "A/B Testing"],
-    projects: [
-      { name: "Aura Cosmetics", img: "https://placehold.co/100x100/050510/8b5cf6?text=Aura" },
-      { name: "Quantum Analytics", img: "https://placehold.co/100x100/050510/8b5cf6?text=Quantum" }
-    ],
+    projects: [],
     trust: ["Google Partner", "Meta Business Partner"]
   },
 ];
 
+const workData = [
+    {
+      id: 1,
+      title: 'Cyber Racing Arena',
+      category: 'game',
+      image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800',
+      subtitle: 'Multiplayer Racing Game with Real-time Physics',
+      tags: ['Unity', '3D', 'Multiplayer', 'WebGL'],
+      client: 'GameStudio Inc',
+      duration: '8 months',
+      team: '12 developers',
+      completionDate: 'March 2024',
+      description: 'An immersive multiplayer racing game featuring cutting-edge physics simulation and real-time competitive gameplay across multiple platforms.',
+      challenges: 'Implementing low-latency multiplayer synchronization across different devices while maintaining 60fps gameplay and realistic physics calculations.',
+      solution: 'Developed custom netcode using Unity\'s DOTS framework combined with client-side prediction and server reconciliation to achieve seamless multiplayer experience.',
+      techStack: ['Unity 2023', 'C#', 'Photon Networking', 'DOTween', 'Addressables', 'FMOD Audio'],
+      features: [
+        'Real-time multiplayer for up to 16 players',
+        'Advanced vehicle physics system',
+        'Dynamic weather and day/night cycle',
+        'Cross-platform matchmaking',
+        'In-game voice chat integration',
+        'Customizable vehicles with 200+ parts'
+      ],
+      metrics: {
+        users: '500K+ active players',
+        rating: '4.8/5 stars',
+        performance: '60 FPS on mid-tier devices'
+      },
+      testimonial: 'The team delivered beyond our expectations. The game runs smoothly and our player retention increased by 300%.',
+      testimonialAuthor: 'John Mitchell, CTO at GameStudio Inc'
+    },
+    {
+      id: 2,
+      title: 'HealthTrack Pro',
+      category: 'app',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800',
+      subtitle: 'AI-Powered Health Monitoring Mobile App',
+      tags: ['React Native', 'AI/ML', 'Healthcare', 'IoT'],
+      client: 'MediCare Solutions',
+      duration: '6 months',
+      team: '8 developers',
+      completionDate: 'January 2025',
+      description: 'A comprehensive health monitoring application that integrates with wearable devices to provide real-time health insights and AI-driven recommendations.',
+      challenges: 'Creating a HIPAA-compliant platform that seamlessly integrates with multiple wearable device APIs while providing accurate health predictions.',
+      solution: 'Built a secure microservices architecture with end-to-end encryption, implementing machine learning models for health trend analysis and anomaly detection.',
+      techStack: ['React Native', 'TypeScript', 'TensorFlow Lite', 'AWS HealthLake', 'GraphQL', 'PostgreSQL'],
+      features: [
+        'Real-time vital signs monitoring',
+        'AI-powered health insights and predictions',
+        'Integration with 20+ wearable devices',
+        'Telemedicine video consultation',
+        'Personalized workout and diet plans',
+        'Emergency alert system with location sharing'
+      ],
+      metrics: {
+        users: '250K+ downloads',
+        rating: '4.9/5 stars',
+        performance: 'HIPAA & GDPR compliant'
+      },
+      testimonial: 'Revolutionary app that has transformed how our patients manage their health. The AI insights are remarkably accurate.',
+      testimonialAuthor: 'Dr. Sarah Chen, Medical Director'
+    },
+    {
+      id: 3,
+      title: 'LuxeMarket',
+      category: 'ecommerce',
+      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800',
+      subtitle: 'High-End Fashion E-Commerce Platform',
+      tags: ['Next.js', 'Stripe', 'Headless CMS', 'PWA'],
+      client: 'Luxe Fashion Group',
+      duration: '5 months',
+      team: '10 developers',
+      completionDate: 'December 2024',
+      description: 'A premium e-commerce platform offering seamless shopping experience with advanced personalization and AR try-on features.',
+      challenges: 'Building a high-performance platform that handles 10,000+ concurrent users during flash sales while providing personalized recommendations.',
+      solution: 'Implemented edge computing with CDN caching, created a custom recommendation engine, and utilized serverless functions for scalability.',
+      techStack: ['Next.js 14', 'Stripe Payments', 'Contentful', 'Algolia Search', 'Redis', 'AWS Lambda'],
+      features: [
+        'AR virtual try-on for accessories',
+        'AI-powered size recommendations',
+        'Multi-currency and multi-language support',
+        'Advanced product filtering and search',
+        'One-click checkout with saved preferences',
+        'Real-time inventory management'
+      ],
+      metrics: {
+        users: '2M+ monthly visitors',
+        rating: '94% customer satisfaction',
+        performance: '99.9% uptime, <1s page load'
+      },
+      testimonial: 'Our conversion rate increased by 180% after the platform launch. The AR feature is a game-changer.',
+      testimonialAuthor: 'Emma Rodriguez, CEO Luxe Fashion'
+    },
+    {
+      id: 4,
+      title: 'Artisan Marketplace',
+      category: 'shopify',
+      image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800',
+      subtitle: 'Custom Shopify Store for Handcrafted Goods',
+      tags: ['Shopify Plus', 'Liquid', 'Custom Theme', 'Apps'],
+      client: 'Artisan Collective',
+      duration: '3 months',
+      team: '6 developers',
+      completionDate: 'November 2024',
+      description: 'A beautifully crafted Shopify store with custom features for artisan sellers, including maker profiles and story-driven product pages.',
+      challenges: 'Creating unique product storytelling experience while maintaining Shopify\'s robust e-commerce functionality and performance standards.',
+      solution: 'Developed custom Shopify theme from scratch with advanced metafields, integrated custom apps for maker profiles and story sections.',
+      techStack: ['Shopify Plus', 'Liquid', 'JavaScript', 'Shopify Polaris', 'GraphQL Admin API', 'Klaviyo'],
+      features: [
+        'Maker profile pages with storytelling',
+        'Custom product bundling system',
+        'Advanced subscription management',
+        'Multi-vendor marketplace functionality',
+        'Interactive product customization',
+        'Integrated loyalty rewards program'
+      ],
+      metrics: {
+        users: '50K+ monthly shoppers',
+        rating: '4.7/5 merchant satisfaction',
+        performance: '45% increase in AOV'
+      },
+      testimonial: 'The custom features perfectly showcase our artisans\' stories. Sales doubled in the first quarter.',
+      testimonialAuthor: 'Michael Torres, Founder'
+    },
+];
+
+const workCategories = [
+    { id: 'game', name: 'Game Development', color: '#ff00ff' },
+    { id: 'app', name: 'App Development', color: '#00ff88' },
+    { id: 'ecommerce', name: 'E-Commerce', color: '#ffaa00' },
+    { id: 'shopify', name: 'Shopify', color: '#95bf47' },
+];
 
 // --- REUSABLE COMPONENTS ---
 
@@ -1365,7 +1474,7 @@ const FAQItem = ({ question, answer, index, activeIndex, setActiveIndex }) => {
     );
 };
 
-const ServiceDetailPage = ({ service, onBack }) => {
+const ServiceDetailPage = ({ service, onBack, onProjectClick }) => {
   return (
     <div className="detail-page">
       <button className="back-button" onClick={onBack}>← Back to Services</button>
@@ -1386,12 +1495,12 @@ const ServiceDetailPage = ({ service, onBack }) => {
           <div className="detail-sidebar">
             <h4>Related Projects</h4>
             <div className="detail-projects">
-              {service.projects.map(p => (
-                <div key={p.name} className="project-item">
+              {service.projects.length > 0 ? service.projects.map(p => (
+                <div key={p.name} className="project-item" onClick={(e) => onProjectClick(p.id, e)}>
                   <img src={p.img} alt={p.name} />
                   <span>{p.name}</span>
                 </div>
-              ))}
+              )) : <p>No projects yet.</p>}
             </div>
             {service.trust.length > 0 && (
               <>
@@ -1409,44 +1518,112 @@ const ServiceDetailPage = ({ service, onBack }) => {
   );
 };
 
+const ProjectDetailPage = ({ project, onBack }) => {
+    return (
+      <div className="project-detail-view fade-in">
+        <button onClick={onBack} className="back-button">
+          <ArrowLeftIcon size={20} /> Back to Home
+        </button>
+        
+        <div className="project-detail-content">
+          <div className="project-detail-header">
+            <img src={project.image} alt={project.title} className="project-detail-image" />
+            <div className="project-detail-overlay">
+              <h1 className="project-detail-title">{project.title}</h1>
+              <p className="project-detail-subtitle">{project.subtitle}</p>
+              <div className="project-detail-meta">
+                <span><CalendarIcon /> {project.completionDate}</span>
+                <span><UsersIcon size={16} /> {project.team}</span>
+                <span><ClockIcon /> {project.duration}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="project-detail-body">
+            <div className="project-detail-section">
+              <h2 className="project-detail-section-title">Project Overview</h2>
+              <p className="project-detail-text">{project.description}</p>
+              <div className="client-info">
+                <strong>Client:</strong> {project.client}
+              </div>
+            </div>
+
+            <div className="project-tags-container">
+              {project.tags.map((tag, idx) => (
+                <span key={idx} className="project-detail-tag">{tag}</span>
+              ))}
+            </div>
+
+            <div className="project-detail-section">
+              <h2 className="project-detail-section-title">Challenges</h2>
+              <p className="project-detail-text">{project.challenges}</p>
+            </div>
+
+            <div className="project-detail-section">
+              <h2 className="project-detail-section-title">Our Solution</h2>
+              <p className="project-detail-text">{project.solution}</p>
+            </div>
+
+            <div className="project-detail-section">
+              <h2 className="project-detail-section-title">Key Features</h2>
+              <div className="feature-grid">
+                {project.features.map((feature, idx) => (
+                  <div key={idx} className="feature-item">
+                    <CheckCircleIcon size={20} />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="project-detail-section">
+              <h2 className="project-detail-section-title">Technology Stack</h2>
+              <div className="tech-grid">
+                {project.techStack.map((tech, idx) => (
+                  <div key={idx} className="tech-item">
+                    <CodeIcon />
+                    <span>{tech}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="metrics-section">
+              <h2 className="project-detail-section-title">Impact & Metrics</h2>
+              <div className="metrics-grid">
+                <div className="metric-card">
+                  <UsersIcon size={32} />
+                  <h3>User Base</h3>
+                  <p>{project.metrics.users}</p>
+                </div>
+                <div className="metric-card">
+                  <AwardIcon size={32} />
+                  <h3>Rating</h3>
+                  <p>{project.metrics.rating}</p>
+                </div>
+                <div className="metric-card">
+                  <CheckCircleIcon size={32} />
+                  <h3>Performance</h3>
+                  <p>{project.metrics.performance}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="testimonial-section">
+              <h2 className="project-detail-section-title">Client Testimonial</h2>
+              <blockquote className="testimonial-blockquote">
+                <p>"{project.testimonial}"</p>
+                <footer>— {project.testimonialAuthor}</footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+};
+
 
 // --- MAIN SECTIONS ---
-
-const Header = ({ onMenuToggle, isMenuOpen }) => (
-    <header>
-        <div className="header-container">
-            <a href="#home" className="logo-container">
-                <div className="logo-icon"><CartIcon /></div>
-                <div className="logo-text">
-                    <h1>Ecom Buddy</h1>
-                    <p>Your E-commerce Partner</p>
-                </div>
-            </a>
-            <nav>
-                <a href="#services">Services</a>
-                <a href="#work">Work</a>
-                <a href="#about">About</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact" className="cta-button">Get Started</a>
-            </nav>
-            <button className={`mobile-menu-button ${isMenuOpen ? 'active' : ''}`} onClick={onMenuToggle}>
-                <div className="line line1"></div>
-                <div className="line line2"></div>
-                <div className="line line3"></div>
-            </button>
-        </div>
-    </header>
-);
-
-const MobileNav = ({ isOpen, onLinkClick }) => (
-    <div className={`mobile-nav ${isOpen ? 'active' : ''}`}>
-        <a href="#services" onClick={onLinkClick}>Services</a>
-        <a href="#work" onClick={onLinkClick}>Work</a>
-        <a href="#about" onClick={onLinkClick}>About</a>
-        <a href="#faq" onClick={onLinkClick}>FAQ</a>
-        <a href="#contact" onClick={onLinkClick}>Contact</a>
-    </div>
-);
 
 const ThreeCanvas = () => {
     const mountRef = useRef(null);
@@ -1563,9 +1740,9 @@ const ThreeCanvas = () => {
 
         const handleResize = () => {
             if (currentMount) {
-              camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
-              camera.updateProjectionMatrix();
-              renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+                camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
             }
         };
         window.addEventListener('resize', handleResize);
@@ -1612,9 +1789,8 @@ const CustomCursor = () => {
 
         window.addEventListener('mousemove', handleMouseMove);
         
-        // Use a mutation observer to re-apply listeners when the DOM changes
         const observer = new MutationObserver((mutations) => {
-            const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .glow-card, .faq-question, .work-card');
+            const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .glow-card, .faq-question, .project-card');
             interactiveElements.forEach(el => {
                 el.removeEventListener('mouseenter', handleMouseEnter);
                 el.removeEventListener('mouseleave', handleMouseLeave);
@@ -1646,10 +1822,10 @@ const CustomCursor = () => {
 // --- APP ---
 
 export default function App() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeFaq, setActiveFaq] = useState(0);
     const [view, setView] = useState('home');
     const [selectedService, setSelectedService] = useState(null);
+    const [selectedProject, setSelectedProject] = useState(null);
     const [isPageFading, setIsPageFading] = useState(false);
     const [rotatingCardId, setRotatingCardId] = useState(null);
 
@@ -1660,25 +1836,29 @@ export default function App() {
         { q: "Can you help with marketing our new website/app?", a: "Yes! Our Growth Marketing team specializes in post-launch success. We can craft a tailored strategy involving SEO, paid advertising, and content marketing to drive traffic and achieve your business goals." }
     ];
 
-    const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
-    const closeMenu = () => setIsMenuOpen(false);
-
-    const handleServiceClick = (service, e) => {
-        if (rotatingCardId) return; // Prevent clicking while animating
-        
+    const handleServiceClick = (service) => {
+        if (rotatingCardId) return;
         setRotatingCardId(service.id);
         
-        setTimeout(() => {
-            setIsPageFading(true);
-        }, 400); // Start fading page after rotation starts
+        setTimeout(() => setIsPageFading(true), 400);
 
         setTimeout(() => {
             setSelectedService(service);
             setView('serviceDetail');
             window.scrollTo(0, 0);
-            setIsPageFading(false); // New page will fade in via CSS animation
+            setIsPageFading(false);
             setRotatingCardId(null);
-        }, 900); // 400ms delay + 500ms fade duration
+        }, 900);
+    };
+    
+    const handleProjectClick = (project) => {
+        setIsPageFading(true);
+        setTimeout(() => {
+            setSelectedProject(project);
+            setView('projectDetail');
+            window.scrollTo(0, 0);
+            setIsPageFading(false);
+        }, 500);
     };
 
     const handleBackToHome = () => {
@@ -1688,290 +1868,238 @@ export default function App() {
         setTimeout(() => {
             setView('home');
             setSelectedService(null);
-            // Let the home page fade back in naturally
+            setSelectedProject(null);
              setTimeout(() => setIsPageFading(false), 50);
-        }, 500); // fade duration
+        }, 500);
     };
 
     return (
         <>
             <Style />
             <CustomCursor />
-            <Header onMenuToggle={handleMenuToggle} isMenuOpen={isMenuOpen} />
-            <MobileNav isOpen={isMenuOpen} onLinkClick={closeMenu} />
-            <ThreeCanvas />
+            {view === 'home' && <ThreeCanvas />}
             
-            <div className={`page-wrapper ${isPageFading ? 'fading' : ''}`}>
-              {view === 'home' && (
-                  <>
-                      <main className="content-wrapper">
-                          <section className="section" id="home">
-                              <AnimatedComponent>
-                                  <div className="hero-content">
-                                      <div className="badge"><span>Architects of Digital Commerce</span></div>
-                                      <h1 className="hero-title">
-                                          <span className="gradient-text-1">Crafting E-commerce</span><br />
-                                          <span style={{ color: 'white' }}>That Truly</span><br />
-                                          <span className="gradient-text-2">Converts</span>
-                                      </h1>
-                                      <p className="hero-description">
-                                          We are the architects behind high-growth online brands. We don’t just build stores; we engineer scalable e-commerce ecosystems that drive revenue and define markets.
-                                      </p>
-                                      <div className="button-group">
-                                          <a href="#contact" className="primary-button">
-                                              <span>Engineer Your Growth</span>
-                                              <span>→</span>
-                                          </a>
-                                          <a href="#work" className="secondary-button">See Our Blueprints</a>
-                                      </div>
-                                  </div>
-                              </AnimatedComponent>
-                          </section>
+            <div className={`page-wrapper ${isPageFading && view === 'home' ? 'fading' : ''}`}>
+                {view === 'home' && (
+                    <>
+                        <main className="content-wrapper">
+                            <section className="section" id="home">
+                                <AnimatedComponent>
+                                    <div className="hero-content">
+                                        <div className="badge"><span>Architects of Digital Commerce</span></div>
+                                        <h1 className="hero-title">
+                                            <span className="gradient-text-1">Crafting E-commerce</span><br />
+                                            <span style={{ color: 'white' }}>That Truly</span><br />
+                                            <span className="gradient-text-2">Converts</span>
+                                        </h1>
+                                        <p className="hero-description">
+                                            We are the architects behind high-growth online brands. We don’t just build stores; we engineer scalable e-commerce ecosystems that drive revenue and define markets.
+                                        </p>
+                                        <div className="button-group">
+                                            <a href="#contact" className="primary-button">
+                                                <span>Engineer Your Growth</span>
+                                                <span>→</span>
+                                            </a>
+                                            <a href="#work" className="secondary-button">See Our Blueprints</a>
+                                        </div>
+                                    </div>
+                                </AnimatedComponent>
+                            </section>
 
-                          <section className="section">
-                              <div className="stats-grid">
-                                  <AnimatedComponent delay={1}><GlowCard className="stat-card"><div className="stat-number">1,200+</div><div className="stat-label">Projects Delivered</div></GlowCard></AnimatedComponent>
-                                  <AnimatedComponent delay={2}><GlowCard className="stat-card"><div className="stat-number">99%</div><div className="stat-label">Client Satisfaction</div></GlowCard></AnimatedComponent>
-                                  <AnimatedComponent delay={3}><GlowCard className="stat-card"><div className="stat-number">$500M+</div><div className="stat-label">Client Revenue Generated</div></GlowCard></AnimatedComponent>
-                                  <AnimatedComponent delay={4}><GlowCard className="stat-card"><div className="stat-number">150+</div><div className="stat-label">Global Team Members</div></GlowCard></AnimatedComponent>
-                              </div>
-                          </section>
-                          
-                          <section className="section" id="services">
-                              <AnimatedComponent>
-                                  <div className="section-header">
-                                      <h2 className="section-title">Our Arsenal of Services</h2>
-                                      <p className="section-subtitle">A complete suite of services to build, launch, and scale your digital venture to new heights.</p>
-                                  </div>
-                              </AnimatedComponent>
-                               <div className="services-grid">
-                                  {servicesData.map((service, index) => (
-                                    <AnimatedComponent delay={(index % 3) + 1} key={service.id}>
-                                         <GlowCard 
-                                           className={`service-card ${rotatingCardId === service.id ? 'rotating' : ''}`}
-                                           onClick={(e) => handleServiceClick(service, e)}
-                                         >
-                                            <div>
-                                                <div className="service-card-header">
-                                                    <h3 className="service-title">{service.title}</h3>
-                                                    <div className="service-icon">{service.icon}</div>
+                            <section className="section">
+                                <div className="stats-grid">
+                                    <AnimatedComponent delay={1}><GlowCard className="stat-card"><div className="stat-number">1,200+</div><div className="stat-label">Projects Delivered</div></GlowCard></AnimatedComponent>
+                                    <AnimatedComponent delay={2}><GlowCard className="stat-card"><div className="stat-number">99%</div><div className="stat-label">Client Satisfaction</div></GlowCard></AnimatedComponent>
+                                    <AnimatedComponent delay={3}><GlowCard className="stat-card"><div className="stat-number">$500M+</div><div className="stat-label">Client Revenue Generated</div></GlowCard></AnimatedComponent>
+                                    <AnimatedComponent delay={4}><GlowCard className="stat-card"><div className="stat-number">150+</div><div className="stat-label">Global Team Members</div></GlowCard></AnimatedComponent>
+                                </div>
+                            </section>
+                            
+                            <section className="section" id="services">
+                                <AnimatedComponent>
+                                    <div className="section-header">
+                                        <h2 className="section-title">Our Arsenal of Services</h2>
+                                        <p className="section-subtitle">A complete suite of services to build, launch, and scale your digital venture to new heights.</p>
+                                    </div>
+                                </AnimatedComponent>
+                                 <div className="services-grid">
+                                    {servicesData.map((service, index) => (
+                                        <AnimatedComponent delay={(index % 3) + 1} key={service.id}>
+                                             <GlowCard 
+                                                className={`service-card ${rotatingCardId === service.id ? 'rotating' : ''}`}
+                                                onClick={() => handleServiceClick(service)}
+                                             >
+                                                <div>
+                                                    <div className="service-card-header">
+                                                        <h3 className="service-title">{service.title}</h3>
+                                                        <div className="service-icon">{service.icon}</div>
+                                                    </div>
+                                                    <ul className="service-features">
+                                                        {service.features.map(f => <li key={f}>{f}</li>)}
+                                                    </ul>
+                                                    <div className="service-deliverables">
+                                                        <h4>What We Deliver:</h4>
+                                                        <p>{service.deliverables}</p>
+                                                    </div>
                                                 </div>
-                                                <ul className="service-features">
-                                                    {service.features.map(f => <li key={f}>{f}</li>)}
-                                                </ul>
-                                                <div className="service-deliverables">
-                                                    <h4>What We Deliver:</h4>
-                                                    <p>{service.deliverables}</p>
+                                                <div className="service-tech">
+                                                    <strong>Key Tech:</strong> {service.tech}
                                                 </div>
-                                            </div>
-                                            <div className="service-tech">
-                                                <strong>Key Tech:</strong> {service.tech}
-                                            </div>
-                                        </GlowCard>
+                                              </GlowCard>
+                                        </AnimatedComponent>
+                                    ))}
+                                </div>
+                            </section>
+                            
+                            <section className="section" id="work">
+                                <AnimatedComponent>
+                                     <div className="section-header">
+                                        <h2 className="section-title">Forging Digital Triumphs</h2>
+                                        <p className="section-subtitle">We don't just build projects; we craft success stories. Here's a glimpse of our impact.</p>
+                                    </div>
+                                </AnimatedComponent>
+                                <div className="projects-grid">
+                                {workData.map(project => {
+                                    const category = workCategories.find(c => c.id === project.category);
+                                    return (
+                                    <div
+                                        key={project.id}
+                                        className="project-card"
+                                        onClick={() => handleProjectClick(project)}
+                                    >
+                                        <div className="card-image-container">
+                                        <img src={project.image} alt={project.title} className="card-image" />
+                                        <div className="card-overlay">
+                                            <ExternalLinkIcon size={32} />
+                                        </div>
+                                        </div>
+                                        <div className="card-content">
+                                        <div className="card-header">
+                                            <h3 className="card-title">{project.title}</h3>
+                                            <span className="card-category-badge" style={{borderColor: category.color, color: category.color}}>
+                                            {category.name}
+                                            </span>
+                                        </div>
+                                        <p className="card-subtitle">{project.subtitle}</p>
+                                        <div className="card-tags">
+                                            {project.tags.slice(0, 3).map((tag, idx) => (
+                                            <span key={idx} className="card-tag">{tag}</span>
+                                            ))}
+                                        </div>
+                                        </div>
+                                    </div>
+                                    );
+                                })}
+                                </div>
+                            </section>
+
+                            <section className="section" id="about">
+                                <div className="about-container">
+                                    <AnimatedComponent delay={1}><div className="about-image"><GlobeIcon /></div></AnimatedComponent>
+                                    <AnimatedComponent delay={2}>
+                                        <div className="about-content">
+                                            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '30px' }}>We're Ecom Buddy</h2>
+                                            <p className="hero-description" style={{ textAlign: 'left', marginLeft: 0, maxWidth: '100%' }}>
+                                                Founded by e-commerce veterans, Ecom Buddy was born from a simple idea: to be the ultimate technical and strategic partner for ambitious brands. We fuse creativity with code, and data with design, to build digital experiences that don't just look good—they perform, convert, and scale.
+                                            </p>
+                                            <a href="#contact" className="secondary-button">Partner With Us</a>
+                                        </div>
                                     </AnimatedComponent>
-                                  ))}
-                              </div>
-                          </section>
-                          
-                          <section className="section" id="work">
-                              <AnimatedComponent>
-                                   <div className="section-header">
-                                      <h2 className="section-title">Forging Digital Triumphs</h2>
-                                      <p className="section-subtitle">We don't just build projects; we craft success stories. Here's a glimpse of our impact.</p>
-                                  </div>
-                              </AnimatedComponent>
-                              <div className="work-grid">
-                                  <div className="work-card">
-                                      <img src="https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Aura Cosmetics" className="work-card-bg" />
-                                      <video className="work-card-video" src="https://assets.mixkit.co/videos/preview/mixkit-bright-orange-liquid-in-slow-motion-24200-large.mp4" autoPlay loop muted playsInline></video>
-                                      <div className="work-card-overlay">
-                                          <div className="work-card-content">
-                                              <h3 className="work-card-title">Aura Cosmetics</h3>
-                                              <p className="work-card-desc">Headless Shopify Plus store delivering a 200% conversion uplift and sub-second page loads.</p>
-                                              <a href="#!" className="secondary-button" style={{padding: '10px 20px', fontSize: '14px'}}>View Case Study</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className="work-card">
-                                      <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Quantum Analytics" className="work-card-bg" />
-                                      <video className="work-card-video" src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-scrolling-numbers-and-letters-30230-large.mp4" autoPlay loop muted playsInline></video>
-                                      <div className="work-card-overlay">
-                                          <div className="work-card-content">
-                                              <h3 className="work-card-title">Quantum Analytics</h3>
-                                              <p className="work-card-desc">A data-intensive SaaS platform built with Next.js for real-time insights and visualizations.</p>
-                                              <a href="#!" className="secondary-button" style={{padding: '10px 20px', fontSize: '14px'}}>View Case Study</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className="work-card">
-                                      <img src="https://images.pexels.com/photos/205316/pexels-photo-205316.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="FitFlow AI" className="work-card-bg" />
-                                      <video className="work-card-video" src="https://assets.mixkit.co/videos/preview/mixkit-man-runs-on-a-treadmill-4509-large.mp4" autoPlay loop muted playsInline></video>
-                                      <div className="work-card-overlay">
-                                          <div className="work-card-content">
-                                              <h3 className="work-card-title">FitFlow AI</h3>
-                                              <p className="work-card-desc">An AI-powered fitness coaching app on iOS and Android with personalized workout plans.</p>
-                                              <a href="#!" className="secondary-button" style={{padding: '10px 20px', fontSize: '14px'}}>View Case Study</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                                   <div className="work-card">
-                                      <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Project Collab" className="work-card-bg" />
-                                      <video className="work-card-video" src="https://assets.mixkit.co/videos/preview/mixkit-abstract-white-waves-in-circular-motion-24647-large.mp4" autoPlay loop muted playsInline></video>
-                                      <div className="work-card-overlay">
-                                          <div className="work-card-content">
-                                              <h3 className="work-card-title">Project Collab</h3>
-                                              <p className="work-card-desc">A real-time collaborative platform for enterprise teams, enhancing productivity by 40%.</p>
-                                              <a href="#!" className="secondary-button" style={{padding: '10px 20px', fontSize: '14px'}}>View Case Study</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </section>
-
-                          <section className="section" id="about">
-                              <div className="about-container">
-                                  <AnimatedComponent delay={1}><div className="about-image"><GlobeIcon /></div></AnimatedComponent>
-                                  <AnimatedComponent delay={2}>
-                                      <div className="about-content">
-                                          <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '30px' }}>We're Ecom Buddy</h2>
-                                          <p className="hero-description" style={{ textAlign: 'left', marginLeft: 0, maxWidth: '100%' }}>
-                                              Founded by e-commerce veterans, Ecom Buddy was born from a simple idea: to be the ultimate technical and strategic partner for ambitious brands. We fuse creativity with code, and data with design, to build digital experiences that don't just look good—they perform, convert, and scale.
-                                          </p>
-                                          <a href="#contact" className="secondary-button">Partner With Us</a>
-                                      </div>
-                                  </AnimatedComponent>
-                              </div>
-                          </section>
-                          
-                          <section className="section" id="faq">
-                              <AnimatedComponent>
-                                  <div className="section-header">
-                                      <h2 className="section-title">Have Questions?</h2>
-                                      <p className="section-subtitle">We have answers. Here are some of the most common questions we get from partners like you.</p>
-                                  </div>
-                              </AnimatedComponent>
-                              <div className="faq-container">
-                                  <AnimatedComponent delay={1}>
-                                      <div className="faq-accordion">
-                                          {faqData.map((faq, index) => (
-                                              <FAQItem key={index} index={index} question={faq.q} answer={faq.a} activeIndex={activeFaq} setActiveIndex={setActiveFaq} />
-                                          ))}
-                                      </div>
-                                  </AnimatedComponent>
-                                  <AnimatedComponent delay={2}>
-                                      <div className="faq-trust-panel">
-                                          <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Abstract trust background" />
-                                          <div className="faq-trust-overlay">
-                                              <h3>Your Trusted Partner in Growth</h3>
-                                              <div className="trust-indicators">
-                                                  <span className="trust-indicator">Shopify Plus Partner</span>
-                                                  <span className="trust-indicator">Meta Business Partner</span>
-                                                  <span className="trust-indicator">Google Partner</span>
-                                              </div>
-                                              <a href="#contact" className="primary-button">Discuss Your Project</a>
-                                          </div>
-                                      </div>
-                                  </AnimatedComponent>
-                              </div>
-                          </section>
-                          
-                          <section className="section" id="contact">
-                              <AnimatedComponent>
-                                  <div className="section-header">
-                                      <h2 className="section-title">Let's Build Something Great</h2>
-                                      <p className="section-subtitle">Ready to start? Drop us a line and one of our experts will get back to you within 24 hours.</p>
-                                  </div>
-                              </AnimatedComponent>
-                              <AnimatedComponent delay={1}>
-                                  <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-                                      <div className="form-group"><UserIcon /><input type="text" placeholder="Your Name" required /></div>
-                                      <div className="form-group"><MailIcon /><input type="email" placeholder="Your Email" required /></div>
-                                      <div className="form-group"><BuildingIcon /><input type="text" placeholder="Company Name" /></div>
-                                      <div className="form-group"><PhoneIcon /><input type="tel" placeholder="Phone Number" /></div>
-                                      <div className="form-group">
-                                          <DollarSignIcon />
-                                          <select required defaultValue="">
-                                              <option value="" disabled>Project Budget</option>
-                                              <option value="<10k">Less than $10,000</option>
-                                              <option value="10-25k">$10,000 - $25,000</option>
-                                              <option value="25-50k">$25,000 - $50,000</option>
-                                              <option value="50k+">$50,000+</option>
-                                          </select>
-                                      </div>
-                                       <div className="form-group">
-                                          <UsersIcon />
-                                          <select required defaultValue="">
-                                              <option value="" disabled>How did you find us?</option>
-                                              <option value="google">Google Search</option>
-                                              <option value="social">Social Media</option>
-                                              <option value="referral">Referral</option>
-                                              <option value="other">Other</option>
-                                          </select>
-                                      </div>
-                                      <div className="form-group"><textarea placeholder="Tell us about your project..." required style={{padding: '15px'}}></textarea></div>
-                                      <button type="submit" className="primary-button" style={{ width: '100%', justifyContent: 'center' }}>
-                                          <span>Send Message</span><span>→</span>
-                                      </button>
-                                  </form>
-                              </AnimatedComponent>
-                          </section>
-                      </main>
-                      <Footer />
-                  </>
+                                </div>
+                            </section>
+                            
+                            <section className="section" id="faq">
+                                <AnimatedComponent>
+                                    <div className="section-header">
+                                        <h2 className="section-title">Have Questions?</h2>
+                                        <p className="section-subtitle">We have answers. Here are some of the most common questions we get from partners like you.</p>
+                                    </div>
+                                </AnimatedComponent>
+                                <div className="faq-container">
+                                    <AnimatedComponent delay={1}>
+                                        <div className="faq-accordion">
+                                            {faqData.map((faq, index) => (
+                                                <FAQItem key={index} index={index} question={faq.q} answer={faq.a} activeIndex={activeFaq} setActiveIndex={setActiveFaq} />
+                                            ))}
+                                        </div>
+                                    </AnimatedComponent>
+                                    <AnimatedComponent delay={2}>
+                                        <div className="faq-trust-panel">
+                                            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Abstract trust background" />
+                                            <div className="faq-trust-overlay">
+                                                <h3>Your Trusted Partner in Growth</h3>
+                                                <div className="trust-indicators">
+                                                    <span className="trust-indicator">Shopify Plus Partner</span>
+                                                    <span className="trust-indicator">Meta Business Partner</span>
+                                                    <span className="trust-indicator">Google Partner</span>
+                                                </div>
+                                                <a href="#contact" className="primary-button">Discuss Your Project</a>
+                                            </div>
+                                        </div>
+                                    </AnimatedComponent>
+                                </div>
+                            </section>
+                            
+                            <section className="section" id="contact">
+                                <AnimatedComponent>
+                                    <div className="section-header">
+                                        <h2 className="section-title">Let's Build Something Great</h2>
+                                        <p className="section-subtitle">Ready to start? Drop us a line and one of our experts will get back to you within 24 hours.</p>
+                                    </div>
+                                </AnimatedComponent>
+                                <AnimatedComponent delay={1}>
+                                    <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+                                        <div className="form-group"><UserIcon /><input type="text" placeholder="Your Name" required /></div>
+                                        <div className="form-group"><MailIcon /><input type="email" placeholder="Your Email" required /></div>
+                                        <div className="form-group"><BuildingIcon /><input type="text" placeholder="Company Name" /></div>
+                                        <div className="form-group"><PhoneIcon /><input type="tel" placeholder="Phone Number" /></div>
+                                        <div className="form-group">
+                                            <DollarSignIcon />
+                                            <select required defaultValue="">
+                                                <option value="" disabled>Project Budget</option>
+                                                <option value="<10k">Less than $10,000</option>
+                                                <option value="10-25k">$10,000 - $25,000</option>
+                                                <option value="25-50k">$25,000 - $50,000</option>
+                                                <option value="50k+">$50,000+</option>
+                                            </select>
+                                        </div>
+                                         <div className="form-group">
+                                            <UsersIcon />
+                                            <select required defaultValue="">
+                                                <option value="" disabled>How did you find us?</option>
+                                                <option value="google">Google Search</option>
+                                                <option value="social">Social Media</option>
+                                                <option value="referral">Referral</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group"><textarea placeholder="Tell us about your project..." required style={{padding: '15px'}}></textarea></div>
+                                        <button type="submit" className="primary-button" style={{ width: '100%', justifyContent: 'center' }}>
+                                            <span>Send Message</span><span>→</span>
+                                        </button>
+                                    </form>
+                                </AnimatedComponent>
+                            </section>
+                        </main>
+                    </>
                 )}
 
                 {view === 'serviceDetail' && (
-                    <ServiceDetailPage service={selectedService} onBack={handleBackToHome} />
+                    <ServiceDetailPage 
+                        service={selectedService} 
+                        onBack={handleBackToHome} 
+                        onProjectClick={(projectId) => {
+                            const project = workData.find(p => p.id.toString() === projectId.toString());
+                            if (project) handleProjectClick(project);
+                        }}
+                    />
+                )}
+                
+                {view === 'projectDetail' && (
+                    <ProjectDetailPage project={selectedProject} onBack={handleBackToHome} />
                 )}
             </div>
         </>
     );
 }
-
-const Footer = () => (
-  <footer>
-      <div className="footer-grid">
-          <div className="footer-section">
-              <h3>ABOUT ECOM BUDDY</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: 1.6 }}>
-                  Your dedicated partner in building and scaling successful digital ventures and e-commerce empires.
-              </p>
-          </div>
-          <div className="footer-section">
-              <h3>QUICK LINKS</h3>
-              <ul>
-                  <li><a href="#home">Home</a></li>
-                  <li><a href="#about">About Us</a></li>
-                  <li><a href="#services">Services</a></li>
-                  <li><a href="#contact">Contact</a></li>
-              </ul>
-          </div>
-          <div className="footer-section">
-              <h3>SERVICES</h3>
-              <ul>
-                  <li><a href="#services">E-commerce Solutions</a></li>
-                  <li><a href="#services">Web Development</a></li>
-                  <li><a href="#services">App Development</a></li>
-                  <li><a href="#services">Game Development</a></li>
-              </ul>
-          </div>
-          <div className="footer-section">
-              <h3>CONNECT</h3>
-              <ul>
-                  <li><a href="#!">📍 Digital Realm, Sector 0x00</a></li>
-                  <li><a href="mailto:contact@ecombuddy.agency">📧 contact@ecombuddy.agency</a></li>
-                  <li><a href="#!">🌐 www.ecombuddy.agency</a></li>
-              </ul>
-          </div>
-      </div>
-      <div className="footer-bottom">
-          <p>© 2025 Ecom Buddy. All rights reserved. | Built with React & Three.js</p>
-          <div className="footer-links">
-              <a href="#!">Privacy Policy</a>
-              <a href="#!">Terms of Service</a>
-              <a href="#!">Cookies</a>
-          </div>
-      </div>
-  </footer>
-);
 
