@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import Threads from './Threads';
 
 // --- STYLE COMPONENT ---
 // To keep everything in one file, we'll inject the CSS via a <style> tag.
@@ -1326,7 +1327,7 @@ const workCategories = [
 ];
 
 // --- REUSABLE COMPONENTS ---
-
+<Threads/>
 const AnimatedComponent = ({ children, delay = 0 }) => {
     const ref = useRef(null);
     useEffect(() => {

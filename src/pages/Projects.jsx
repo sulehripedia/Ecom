@@ -1,23 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Filter, ExternalLink, Calendar, Users, Clock, Award, Code, CheckCircle, ArrowLeft } from 'lucide-react';
+import { X, Filter, ExternalLink, Calendar, Users, Clock, Award, Code, CheckCircle, ArrowLeft, Zap, Target, TrendingUp } from 'lucide-react';
 
 const ProjectsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const canvasRef = useRef(null);
-  const mousePos = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  const scrollY = useRef(0);
+  const cubesRef = useRef([]);
 
   const categories = [
-    { id: 'all', name: 'All Projects', color: '#00f0ff' },
-    { id: 'game', name: 'Game Development', color: '#ff00ff' },
-    { id: 'app', name: 'App Development', color: '#00ff88' },
-    { id: 'ecommerce', name: 'E-Commerce', color: '#ffaa00' },
-    { id: 'shopify', name: 'Shopify', color: '#95bf47' },
-    { id: 'devops', name: 'DevOps', color: '#ff4444' },
-    { id: 'cloud', name: 'Cloud Computing', color: '#4488ff' },
-    { id: 'ai', name: 'AI Agents', color: '#ff66ff' }
+    { id: 'all', name: 'All Projects', color: '#00f0ff', icon: '🚀' },
+    { id: 'game', name: 'Game Dev', color: '#ff00ff', icon: '🎮' },
+    { id: 'app', name: 'Mobile Apps', color: '#00ff88', icon: '📱' },
+    { id: 'ecommerce', name: 'E-Commerce', color: '#ffaa00', icon: '🛒' },
+    { id: 'shopify', name: 'Shopify', color: '#95bf47', icon: '🛍️' },
+    { id: 'devops', name: 'DevOps', color: '#ff4444', icon: '⚙️' },
+    { id: 'cloud', name: 'Cloud', color: '#4488ff', icon: '☁️' },
+    { id: 'ai', name: 'AI Agents', color: '#ff66ff', icon: '🤖' }
   ];
 
   const projects = [
@@ -25,7 +26,7 @@ const ProjectsPage = () => {
       id: 1,
       title: 'Cyber Racing Arena',
       category: 'game',
-      image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800',
       subtitle: 'Multiplayer Racing Game with Real-time Physics',
       tags: ['Unity', '3D', 'Multiplayer', 'WebGL'],
       client: 'GameStudio Inc',
@@ -56,7 +57,7 @@ const ProjectsPage = () => {
       id: 2,
       title: 'HealthTrack Pro',
       category: 'app',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800',
       subtitle: 'AI-Powered Health Monitoring Mobile App',
       tags: ['React Native', 'AI/ML', 'Healthcare', 'IoT'],
       client: 'MediCare Solutions',
@@ -87,7 +88,7 @@ const ProjectsPage = () => {
       id: 3,
       title: 'LuxeMarket',
       category: 'ecommerce',
-      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800',
       subtitle: 'High-End Fashion E-Commerce Platform',
       tags: ['Next.js', 'Stripe', 'Headless CMS', 'PWA'],
       client: 'Luxe Fashion Group',
@@ -118,7 +119,7 @@ const ProjectsPage = () => {
       id: 4,
       title: 'Artisan Marketplace',
       category: 'shopify',
-      image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800',
       subtitle: 'Custom Shopify Store for Handcrafted Goods',
       tags: ['Shopify Plus', 'Liquid', 'Custom Theme', 'Apps'],
       client: 'Artisan Collective',
@@ -149,7 +150,7 @@ const ProjectsPage = () => {
       id: 5,
       title: 'CloudOps Pipeline',
       category: 'devops',
-      image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800',
       subtitle: 'Enterprise CI/CD Infrastructure Automation',
       tags: ['Kubernetes', 'Terraform', 'Jenkins', 'Docker'],
       client: 'TechCorp Enterprise',
@@ -180,7 +181,7 @@ const ProjectsPage = () => {
       id: 6,
       title: 'DataScale Platform',
       category: 'cloud',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800',
       subtitle: 'Scalable Cloud Data Processing Infrastructure',
       tags: ['AWS', 'Serverless', 'Big Data', 'Analytics'],
       client: 'DataInsights Corp',
@@ -211,7 +212,7 @@ const ProjectsPage = () => {
       id: 7,
       title: 'SmartAssist AI',
       category: 'ai',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800',
       subtitle: 'Intelligent Customer Service AI Agent',
       tags: ['NLP', 'Machine Learning', 'Chatbot', 'Automation'],
       client: 'ServiceHub Technologies',
@@ -242,7 +243,7 @@ const ProjectsPage = () => {
       id: 8,
       title: 'VR Training Simulator',
       category: 'game',
-      image: 'https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=800&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=800',
       subtitle: 'Industrial Safety Training in Virtual Reality',
       tags: ['Unreal Engine', 'VR', 'Training', 'Simulation'],
       client: 'SafeWork Industries',
@@ -271,128 +272,139 @@ const ProjectsPage = () => {
     }
   ];
 
+  // 3D Blueprint Cubes Animation with scroll and mouse interaction
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
+    
     const ctx = canvas.getContext('2d');
-    let animationFrameId;
-
-    const resizeCanvas = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    const updateCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
-    resizeCanvas();
+    updateCanvasSize();
 
-    const cubes = [];
-    const numCubes = window.innerWidth < 768 ? 8 : 15;
-
-    for (let i = 0; i < numCubes; i++) {
-        const size = Math.random() * 80 + 40;
-        cubes.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            z: Math.random() * 200 - 100,
-            size: size,
-            initialSize: size,
-            rotation: Math.random() * Math.PI * 2,
-            rotationSpeed: (Math.random() - 0.5) * 0.01,
-            opacity: Math.random() * 0.2 + 0.05,
-            speedX: (Math.random() - 0.5) * 0.3,
-            speedY: (Math.random() - 0.5) * 0.3
+    // Initialize cubes only once
+    if (cubesRef.current.length === 0) {
+      const numCubes = 20;
+      for (let i = 0; i < numCubes; i++) {
+        cubesRef.current.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          z: Math.random() * 500 + 200,
+          size: Math.random() * 100 + 50,
+          rotation: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.015,
+          opacity: Math.random() * 0.4 + 0.15,
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3,
+          color: i % 3 === 0 ? '#00f0ff' : i % 3 === 1 ? '#ff00ff' : '#00ff88'
         });
+      }
     }
 
     const drawCube = (cube) => {
-        ctx.save();
-        ctx.translate(cube.x, cube.y);
-        ctx.rotate(cube.rotation);
-        
-        const s = cube.size;
-        ctx.strokeStyle = `rgba(0, 240, 255, ${cube.opacity})`;
-        ctx.lineWidth = 1.5;
+      ctx.save();
+      
+      // Apply mouse interaction
+      const mouseInfluence = 30;
+      const dx = (mousePos.x - cube.x) / canvas.width;
+      const dy = (mousePos.y - cube.y) / canvas.height;
+      const offsetX = dx * mouseInfluence;
+      const offsetY = dy * mouseInfluence;
+      
+      // Apply scroll-based depth and rotation
+      const scrollInfluence = scrollY * 0.1;
+      const scale = cube.z / (cube.z + scrollInfluence);
+      const perspective = 600;
+      const depth = perspective / (perspective + cube.z - scrollInfluence);
+      
+      ctx.translate(cube.x + offsetX, cube.y + offsetY);
+      ctx.scale(depth, depth);
+      ctx.rotate(cube.rotation + scrollInfluence * 0.001);
+      
+      const s = cube.size;
+      ctx.lineWidth = 2;
 
-        // Front face
-        ctx.beginPath();
-        ctx.moveTo(-s/2, -s/2); ctx.lineTo(s/2, -s/2); ctx.lineTo(s/2, s/2); ctx.lineTo(-s/2, s/2);
-        ctx.closePath();
-        ctx.stroke();
+      // Front face
+      ctx.strokeStyle = `rgba(${cube.color === '#00f0ff' ? '0, 240, 255' : cube.color === '#ff00ff' ? '255, 0, 255' : '0, 255, 136'}, ${cube.opacity})`;
+      ctx.beginPath();
+      ctx.moveTo(-s/2, -s/2);
+      ctx.lineTo(s/2, -s/2);
+      ctx.lineTo(s/2, s/2);
+      ctx.lineTo(-s/2, s/2);
+      ctx.closePath();
+      ctx.stroke();
 
-        // Back face
-        ctx.strokeStyle = `rgba(255, 0, 255, ${cube.opacity * 0.6})`;
-        const p = s / 3;
-        ctx.beginPath();
-        ctx.moveTo(-p, -p); ctx.lineTo(p, -p); ctx.lineTo(p, p); ctx.lineTo(-p, p);
-        ctx.closePath();
-        ctx.stroke();
+      // Back face (with perspective)
+      ctx.strokeStyle = `rgba(${cube.color === '#00f0ff' ? '0, 240, 255' : cube.color === '#ff00ff' ? '255, 0, 255' : '0, 255, 136'}, ${cube.opacity * 0.5})`;
+      const offset = s * 0.3;
+      ctx.beginPath();
+      ctx.moveTo(-s/2 + offset, -s/2 + offset);
+      ctx.lineTo(s/2 - offset, -s/2 + offset);
+      ctx.lineTo(s/2 - offset, s/2 - offset);
+      ctx.lineTo(-s/2 + offset, s/2 - offset);
+      ctx.closePath();
+      ctx.stroke();
 
-        // Connecting lines
-        ctx.strokeStyle = `rgba(0, 255, 136, ${cube.opacity * 0.4})`;
-        ctx.beginPath();
-        ctx.moveTo(-s/2, -s/2); ctx.lineTo(-p, -p);
-        ctx.moveTo(s/2, -s/2); ctx.lineTo(p, -p);
-        ctx.moveTo(s/2, s/2); ctx.lineTo(p, p);
-        ctx.moveTo(-s/2, s/2); ctx.lineTo(-p, p);
-        ctx.stroke();
+      // Connecting lines
+      ctx.strokeStyle = `rgba(${cube.color === '#00f0ff' ? '0, 240, 255' : cube.color === '#ff00ff' ? '255, 0, 255' : '0, 255, 136'}, ${cube.opacity * 0.3})`;
+      ctx.beginPath();
+      ctx.moveTo(-s/2, -s/2);
+      ctx.lineTo(-s/2 + offset, -s/2 + offset);
+      ctx.moveTo(s/2, -s/2);
+      ctx.lineTo(s/2 - offset, -s/2 + offset);
+      ctx.moveTo(s/2, s/2);
+      ctx.lineTo(s/2 - offset, s/2 - offset);
+      ctx.moveTo(-s/2, s/2);
+      ctx.lineTo(-s/2 + offset, s/2 - offset);
+      ctx.stroke();
 
-        ctx.restore();
+      ctx.restore();
     };
 
     const animate = () => {
-        ctx.fillStyle = 'rgba(10, 10, 20, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(8, 8, 18, 0.15)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        cubes.forEach(cube => {
-            // Mouse parallax effect
-            const dx = cube.x - mousePos.current.x;
-            const dy = cube.y - mousePos.current.y;
-            const parallaxFactor = cube.z / 20000;
-            cube.x -= dx * parallaxFactor;
-            cube.y -= dy * parallaxFactor;
+      cubesRef.current.forEach(cube => {
+        cube.rotation += cube.rotationSpeed;
+        cube.x += cube.speedX;
+        cube.y += cube.speedY;
 
-            // Scroll effect to make cubes feel closer/further
-            const scrollScale = scrollY.current * 0.001;
-            cube.size = cube.initialSize + scrollScale * cube.z;
-            cube.size = Math.max(10, Math.min(cube.size, 250)); // Clamp size to avoid extremes
+        if (cube.x < -150) cube.x = canvas.width + 150;
+        if (cube.x > canvas.width + 150) cube.x = -150;
+        if (cube.y < -150) cube.y = canvas.height + 150;
+        if (cube.y > canvas.height + 150) cube.y = -150;
 
-            cube.rotation += cube.rotationSpeed + scrollY.current * 0.00005;
+        drawCube(cube);
+      });
 
-            // Movement
-            cube.x += cube.speedX;
-            cube.y += cube.speedY;
-
-            // Boundary check
-            if (cube.x < -100) cube.x = canvas.width + 100;
-            if (cube.x > canvas.width + 100) cube.x = -100;
-            if (cube.y < -100) cube.y = canvas.height + 100;
-            if (cube.y > canvas.height + 100) cube.y = -100;
-
-            drawCube(cube);
-        });
-
-        animationFrameId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     };
 
     animate();
-    
-    const handleMouseMove = (e) => {
-        mousePos.current = { x: e.clientX, y: e.clientY };
-    };
-    
-    const handleScroll = () => {
-        scrollY.current = window.scrollY;
-    };
 
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', handleMouseMove);
+    const handleResize = () => updateCanvasSize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, [scrollY, mousePos]);
+
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    return () => {
-        window.removeEventListener('resize', resizeCanvas);
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('scroll', handleScroll);
-        cancelAnimationFrame(animationFrameId);
+  // Track mouse position
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
     };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const filteredProjects = selectedCategory === 'all' 
@@ -404,8 +416,8 @@ const ProjectsPage = () => {
     setTimeout(() => {
       setSelectedProject(project);
       setIsTransitioning(false);
-      window.scrollTo(0, 0);
-    }, 300);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 400);
   };
 
   const handleCloseProject = () => {
@@ -413,565 +425,783 @@ const ProjectsPage = () => {
     setTimeout(() => {
       setSelectedProject(null);
       setIsTransitioning(false);
-    }, 300);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 400);
   };
-  
-  const DetailView = ({ project }) => {
-    if (!project) return null;
+
+  if (selectedProject) {
     return (
-        <div className={`detail-view ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
-              <div className="detail-content">
-                <div className="detail-header">
-                    <img src={project.image} alt={project.title} className="detail-image" />
-                    <div className="detail-overlay">
-                        <h1 className="detail-title">{project.title}</h1>
-                        <p className="detail-subtitle">{project.subtitle}</p>
-                        <div className="detail-meta">
-                            <span><Calendar size={16} /> {project.completionDate}</span>
-                            <span><Users size={16} /> {project.team}</span>
-                            <span><Clock size={16} /> {project.duration}</span>
-                        </div>
-                    </div>
+      <div style={styles.container}>
+        <canvas ref={canvasRef} style={styles.canvas} />
+        
+        <div style={styles.detailView} className={isTransitioning ? 'fade-out' : 'fade-in'}>
+          <button onClick={handleCloseProject} style={styles.closeButton} className="close-btn">
+            <ArrowLeft size={20} /> Back to Projects
+          </button>
+          
+          <div style={styles.detailContent}>
+            <div style={styles.detailHeader}>
+              <img src={selectedProject.image} alt={selectedProject.title} style={styles.detailImage} />
+              <div style={styles.detailOverlay}>
+                <h1 style={styles.detailTitle}>{selectedProject.title}</h1>
+                <p style={styles.detailSubtitle}>{selectedProject.subtitle}</p>
+                <div style={styles.detailMeta}>
+                  <span><Calendar size={16} /> {selectedProject.completionDate}</span>
+                  <span><Users size={16} /> {selectedProject.team}</span>
+                  <span><Clock size={16} /> {selectedProject.duration}</span>
                 </div>
-
-                <div className="detail-body">
-                    <div className="detail-section">
-                        <h2 className="section-title">Project Overview</h2>
-                        <p className="detail-text">{project.description}</p>
-                        <div className="client-info">
-                            <strong>Client:</strong> {project.client}
-                        </div>
-                    </div>
-
-                    <div className="tags-container">
-                        {project.tags.map((tag, idx) => (
-                            <span key={idx} className="detail-tag">{tag}</span>
-                        ))}
-                    </div>
-
-                    <div className="detail-section">
-                        <h2 className="section-title">Challenges</h2>
-                        <p className="detail-text">{project.challenges}</p>
-                    </div>
-
-                    <div className="detail-section">
-                        <h2 className="section-title">Our Solution</h2>
-                        <p className="detail-text">{project.solution}</p>
-                    </div>
-
-                    <div className="detail-section">
-                        <h2 className="section-title">Key Features</h2>
-                        <div className="feature-grid">
-                            {project.features.map((feature, idx) => (
-                                <div key={idx} className="feature-item">
-                                    <CheckCircle size={20} className="check-icon" />
-                                    <span>{feature}</span>
-                                </div>
-                            ))}
-                        </div>
-                        
-                    </div>
-
-
-                    <div className="detail-section">
-                        <h2 className="section-title">Technology Stack</h2>
-                        <div className="tech-grid">
-                            {project.techStack.map((tech, idx) => (
-                                <div key={idx} className="tech-item">
-                                    <Code size={18} />
-                                    <span>{tech}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="metrics-section">
-                        <h2 className="section-title">Impact & Metrics</h2>
-                        <div className="metrics-grid">
-                            <div className="metric-card">
-                                <Users size={32} />
-                                <h3>User Base</h3>
-                                <p>{project.metrics.users}</p>
-                            </div>
-                            <div className="metric-card">
-                                <Award size={32} />
-                                <h3>Rating</h3>
-                                <p>{project.metrics.rating}</p>
-                            </div>
-                            <div className="metric-card">
-                                <CheckCircle size={32} />
-                                <h3>Performance</h3>
-                                <p>{project.metrics.performance}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="testimonial-section">
-                        <h2 className="section-title">Client Testimonial</h2>
-                        <blockquote className="testimonial">
-                            <p>"{project.testimonial}"</p>
-                            <footer>— {project.testimonialAuthor}</footer>
-                        </blockquote>
-                    </div>
-                    
-                </div>
+              </div>
             </div>
-               <button onClick={handleCloseProject} className="close-button">
-                <ArrowLeft size={24} /> Back to Projects
-            </button>
+
+            <div style={styles.detailBody}>
+              <div style={styles.detailSection}>
+                <h2 style={styles.sectionTitle}>
+                  <Target size={24} style={{marginRight: '10px'}} />
+                  Project Overview
+                </h2>
+                <p style={styles.detailText}>{selectedProject.description}</p>
+                <div style={styles.clientInfo}>
+                  <strong>Client:</strong> {selectedProject.client}
+                </div>
+              </div>
+
+              <div style={styles.tagsContainer}>
+                {selectedProject.tags.map((tag, idx) => (
+                  <span key={idx} style={styles.detailTag}>{tag}</span>
+                ))}
+              </div>
+
+              <div style={styles.twoColumnSection}>
+                <div style={styles.detailSection}>
+                  <h2 style={styles.sectionTitle}>
+                    <Zap size={24} style={{marginRight: '10px'}} />
+                    Challenges
+                  </h2>
+                  <p style={styles.detailText}>{selectedProject.challenges}</p>
+                </div>
+
+                <div style={styles.detailSection}>
+                  <h2 style={styles.sectionTitle}>
+                    <CheckCircle size={24} style={{marginRight: '10px'}} />
+                    Our Solution
+                  </h2>
+                  <p style={styles.detailText}>{selectedProject.solution}</p>
+                </div>
+              </div>
+
+              <div style={styles.detailSection}>
+                <h2 style={styles.sectionTitle}>
+                  <Award size={24} style={{marginRight: '10px'}} />
+                  Key Features
+                </h2>
+                <div style={styles.featureGrid}>
+                  {selectedProject.features.map((feature, idx) => (
+                    <div key={idx} style={styles.featureItem} className="feature-item">
+                      <CheckCircle size={20} style={styles.checkIcon} />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div style={styles.detailSection}>
+                <h2 style={styles.sectionTitle}>
+                  <Code size={24} style={{marginRight: '10px'}} />
+                  Technology Stack
+                </h2>
+                <div style={styles.techGrid}>
+                  {selectedProject.techStack.map((tech, idx) => (
+                    <div key={idx} style={styles.techItem} className="tech-item">
+                      <div style={styles.techDot}></div>
+                      <span>{tech}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div style={styles.metricsSection}>
+                <h2 style={styles.sectionTitle}>
+                  <TrendingUp size={24} style={{marginRight: '10px'}} />
+                  Impact & Metrics
+                </h2>
+                <div style={styles.metricsGrid}>
+                  <div style={styles.metricCard} className="metric-card">
+                    <Users size={40} style={{color: '#00f0ff'}} />
+                    <h3>User Base</h3>
+                    <p>{selectedProject.metrics.users}</p>
+                  </div>
+                  <div style={styles.metricCard} className="metric-card">
+                    <Award size={40} style={{color: '#ff00ff'}} />
+                    <h3>Rating</h3>
+                    <p>{selectedProject.metrics.rating}</p>
+                  </div>
+                  <div style={styles.metricCard} className="metric-card">
+                    <CheckCircle size={40} style={{color: '#00ff88'}} />
+                    <h3>Performance</h3>
+                    <p>{selectedProject.metrics.performance}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style={styles.testimonialSection}>
+                <h2 style={styles.sectionTitle}>Client Testimonial</h2>
+                <blockquote style={styles.testimonial}>
+                  <p>"{selectedProject.testimonial}"</p>
+                  <footer>— {selectedProject.testimonialAuthor}</footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <style>{`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-30px); }
+          }
+          .fade-in { animation: fadeIn 0.4s ease-out; }
+          .fade-out { animation: fadeOut 0.4s ease-out; }
+          
+          .close-btn:hover {
+            background: rgba(0, 240, 255, 0.25) !important;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.5) !important;
+            transform: translateX(-5px) !important;
+          }
+          
+          .feature-item:hover {
+            background: rgba(0, 255, 136, 0.15) !important;
+            transform: translateX(5px) !important;
+          }
+          
+          .tech-item:hover {
+            background: rgba(100, 150, 255, 0.2) !important;
+            transform: scale(1.05) !important;
+          }
+          
+          .metric-card:hover {
+            transform: translateY(-10px) scale(1.05) !important;
+            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.4) !important;
+          }
+        `}</style>
+      </div>
     );
-  };
+  }
 
   return (
-    <div className="portfolio-container">
-      <canvas ref={canvasRef} className="background-canvas" />
+    <div style={styles.container}>
+      <canvas ref={canvasRef} style={styles.canvas} />
       
-      {selectedProject ? (
-        <DetailView project={selectedProject} />
-      ) : (
-        <div className="main-content">
-          <header className="header">
-            <h1 className="main-title">Our Projects</h1>
-            <p className="main-subtitle">Innovative solutions across multiple domains</p>
-          </header>
+      <div style={styles.content}>
+        <header style={styles.header}>
+          <h1 style={styles.mainTitle}>Our Projects</h1>
+          <p style={styles.mainSubtitle}>Innovative solutions across multiple domains</p>
+        </header>
 
-          <div className="filter-section">
-            <div className="filter-icon">
-              <Filter size={20} />
-              <span>Filter by:</span>
-            </div>
-            <div className="category-buttons">
-              {categories.map(cat => (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`category-button ${selectedCategory === cat.id ? 'active' : ''}`}
-                  style={{ 
-                      '--glow-color': cat.color,
-                      '--glow-color-transparent': `${cat.color}80`
-                  }}
-                >
-                  {cat.name}
-                </button>
-              ))}
-            </div>
+        <div style={styles.floatingFilterContainer}>
+          <div style={styles.filterLabel}>
+            <Filter size={18} />
+            <span>Filter Projects</span>
           </div>
-
-          <div className={`projects-grid ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
-            {filteredProjects.map(project => {
-              const category = categories.find(c => c.id === project.category);
-              return (
-                <div
-                  key={project.id}
-                  className="project-card"
-                  onClick={() => handleProjectClick(project)}
-                  style={{ '--glow-color': category.color }}
-                >
-                  <div className="card-image-container">
-                    <img src={project.image} alt={project.title} className="card-image" />
-                    <div className="card-overlay">
-                      <ExternalLink size={24} />
-                    </div>
-                  </div>
-                  <div className="card-content">
-                    <div className="card-header">
-                      <h3 className="card-title">{project.title}</h3>
-                      <span className="category-badge" style={{ borderColor: category.color, color: category.color }}>
-                        {category.name}
-                      </span>
-                    </div>
-                    <p className="card-subtitle">{project.subtitle}</p>
-                    <div className="card-tags">
-                      {project.tags.slice(0, 3).map((tag, idx) => (
-                        <span key={idx} className="tag">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          <div style={styles.categoryGrid}>
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className="category-btn"
+                style={{
+                  ...styles.categoryButton,
+                  ...(selectedCategory === cat.id ? {
+                    background: `linear-gradient(135deg, ${cat.color}20, ${cat.color}10)`,
+                    borderColor: cat.color,
+                    boxShadow: `0 0 30px ${cat.color}60, inset 0 0 20px ${cat.color}20`
+                  } : {})
+                }}
+              >
+                <span style={styles.categoryIcon}>{cat.icon}</span>
+                <span>{cat.name}</span>
+              </button>
+            ))}
           </div>
         </div>
-      )}
+
+        <div style={styles.projectsGrid} className={isTransitioning ? 'fade-out' : 'fade-in'}>
+          {filteredProjects.map(project => {
+            const category = categories.find(c => c.id === project.category);
+            return (
+              <div
+                key={project.id}
+                style={styles.projectCard}
+                className="project-card"
+                onClick={() => handleProjectClick(project)}
+              >
+                <div style={styles.cardImageContainer}>
+                  <img src={project.image} alt={project.title} style={styles.cardImage} />
+                  <div style={styles.cardOverlay}>
+                    <ExternalLink size={28} />
+                    <span style={styles.overlayText}>View Project</span>
+                  </div>
+                </div>
+                <div style={styles.cardContent}>
+                  <div style={styles.cardHeader}>
+                    <h3 style={styles.cardTitle}>{project.title}</h3>
+                    <span 
+                      style={{
+                        ...styles.categoryBadge, 
+                        borderColor: category.color, 
+                        color: category.color,
+                        boxShadow: `0 0 15px ${category.color}40`
+                      }}
+                    >
+                      {category.icon}
+                    </span>
+                  </div>
+                  <p style={styles.cardSubtitle}>{project.subtitle}</p>
+                  <div style={styles.cardTags}>
+                    {project.tags.slice(0, 4).map((tag, idx) => (
+                      <span key={idx} style={styles.tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <div style={styles.cardFooter}>
+                    <span style={styles.clientBadge}>
+                      <Users size={14} /> {project.client}
+                    </span>
+                    <span style={styles.durationBadge}>
+                      <Clock size={14} /> {project.duration}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
       <style>{`
-        :root {
-            --background-dark: #0a0a14;
-            --background-light: #1a0a28;
-            --primary-glow: #00f0ff;
-            --secondary-glow: #ff00ff;
-            --accent-glow: #00ff88;
-            --text-primary: #fff;
-            --text-secondary: #a0a0ff;
-            --text-highlight: #d0d0e0;
-        }
-        
-        body {
-          margin: 0;
-        }
-
-        .portfolio-container {
-          min-height: 100vh;
-          background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
-          color: var(--text-primary);
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-          position: relative;
-          overflow-x: hidden;
-        }
-        .background-canvas {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 0;
-          pointer-events: none;
-        }
-        .main-content {
-          position: relative;
-          z-index: 1;
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 40px 20px;
-        }
-        .header {
-          text-align: center;
-          margin-bottom: 60px;
-        }
-        .main-title {
-          font-size: 4rem;
-          font-weight: 800;
-          background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow), var(--accent-glow));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          margin-bottom: 10px;
-          text-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
-        }
-        .main-subtitle {
-          font-size: 1.2rem;
-          color: var(--text-secondary);
-          opacity: 0.8;
-        }
-        .filter-section {
-          margin-bottom: 50px;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          align-items: center;
-        }
-        .filter-icon {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          color: var(--primary-glow);
-          font-size: 1.1rem;
-        }
-        .category-buttons {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 15px;
-          justify-content: center;
-        }
-        .category-button {
-          padding: 12px 24px;
-          background: rgba(0, 240, 255, 0.05);
-          border: 2px solid rgba(0, 240, 255, 0.3);
-          border-radius: 25px;
-          color: var(--text-primary);
-          font-size: 0.95rem;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          font-weight: 500;
-          backdrop-filter: blur(10px);
-        }
-        .category-button:hover {
-            transform: scale(1.05);
-            background: rgba(0, 240, 255, 0.1);
-        }
-        .category-button.active {
-          background: rgba(0, 240, 255, 0.15);
-          transform: scale(1.05);
-          border-color: var(--glow-color);
-          box-shadow: 0 0 20px var(--glow-color-transparent);
-        }
-        .projects-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-          gap: 30px;
-          margin-bottom: 40px;
-        }
-        .project-card {
-          background: rgba(20, 20, 40, 0.6);
-          border-radius: 20px;
-          overflow: hidden;
-          border: 1px solid rgba(0, 240, 255, 0.2);
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-          backdrop-filter: blur(10px);
-          position: relative;
-        }
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 50px var(--glow-color);
-            border-color: var(--glow-color);
-        }
-        .card-image-container {
-          position: relative;
-          width: 100%;
-          height: 220px;
-          overflow: hidden;
-        }
-        .card-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-        }
-        .project-card:hover .card-image {
-            transform: scale(1.1);
-        }
-        .card-overlay {
-          position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(255, 0, 255, 0.3));
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-          color: var(--text-primary);
-        }
-        .project-card:hover .card-overlay {
-            opacity: 1;
-        }
-        .card-content { padding: 25px; }
-        .card-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          margin-bottom: 12px;
-          gap: 10px;
-        }
-        .card-title {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: var(--primary-glow);
-          margin: 0;
-          flex: 1;
-        }
-        .category-badge {
-          padding: 4px 12px;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          border: 1px solid;
-          font-weight: 600;
-          white-space: nowrap;
-        }
-        .card-subtitle {
-          font-size: 0.95rem;
-          color: #b0b0d0;
-          margin-bottom: 15px;
-          line-height: 1.5;
-        }
-        .card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag {
-          padding: 6px 12px;
-          background: rgba(0, 255, 136, 0.1);
-          border: 1px solid rgba(0, 255, 136, 0.3);
-          border-radius: 15px;
-          font-size: 0.8rem;
-          color: var(--accent-glow);
-        }
-        
-        /* Detail View Styles */
-        .detail-view {
-          min-height: 100vh;
-          padding: 30px 20px;
-          position: relative;
-          overflow: auto;
-          z-index: 10;
-        }
-        .close-button {
-        
-         top: 30px;
-          left: 30px;
-          padding: 12px 24px;
-          background: rgba(0, 240, 255, 0.15);
-          border: 2px solid var(--primary-glow);
-          border-radius: 25px;
-          color: var(--primary-glow);
-          font-size: 1rem;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          z-index: 1000;
-          transition: all 0.3s ease;
-          font-weight: 600;
-          backdrop-filter: blur(10px);
-        }
-        .close-button:hover {
-            box-shadow: 0 0 20px var(--primary-glow);
-            transform: scale(1.05);
-        }
-        .detail-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding-top: 80px;
-        }
-        .detail-header {
-          position: relative;
-          width: 100%;
-          height: 500px;
-          border-radius: 20px;
-          overflow: hidden;
-          margin-bottom: 50px;
-          border: 2px solid rgba(0, 240, 255, 0.3);
-          box-shadow: 0 0 40px rgba(0, 240, 255, 0.2);
-        }
-        .detail-image { width: 100%; height: 100%; object-fit: cover; }
-        .detail-overlay {
-          position: absolute;
-          bottom: 0; left: 0; right: 0;
-          padding: 40px;
-          background: linear-gradient(to top, rgba(10, 10, 20, 0.95) 0%, transparent 100%);
-        }
-        .detail-title {
-          font-size: 3rem;
-          font-weight: 800;
-          background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          margin-bottom: 10px;
-        }
-        .detail-subtitle { font-size: 1.3rem; color: #b0b0d0; margin-bottom: 20px; }
-        .detail-meta { display: flex; gap: 30px; font-size: 0.95rem; color: var(--accent-glow); flex-wrap: wrap; }
-        .detail-body {
-          background: rgba(20, 20, 40, 0.6);
-          border-radius: 20px;
-          padding: 50px;
-          border: 1px solid rgba(0, 240, 255, 0.2);
-          backdrop-filter: blur(10px);
-        }
-        .detail-section { margin-bottom: 40px; }
-        .section-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--primary-glow);
-          margin-bottom: 20px;
-          position: relative;
-          padding-bottom: 10px;
-          border-bottom: 2px solid rgba(0, 240, 255, 0.3);
-        }
-        .detail-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-highlight); margin-bottom: 15px; }
-        .client-info {
-          padding: 15px 20px;
-          background: rgba(0, 240, 255, 0.05);
-          border: 1px solid rgba(0, 240, 255, 0.3);
-          border-radius: 10px;
-          color: var(--primary-glow);
-          font-size: 1rem;
-          margin-top: 15px;
-        }
-        .tags-container { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
-        .detail-tag {
-          padding: 10px 20px;
-          background: rgba(255, 0, 255, 0.1);
-          border: 2px solid rgba(255, 0, 255, 0.4);
-          border-radius: 20px;
-          font-size: 0.95rem;
-          color: var(--secondary-glow);
-          font-weight: 600;
-        }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .feature-item {
-          display: flex; align-items: flex-start; gap: 12px;
-          padding: 15px; background: rgba(0, 255, 136, 0.05);
-          border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 10px;
-          color: var(--text-highlight); font-size: 1rem;
-        }
-        .check-icon { color: var(--accent-glow); flex-shrink: 0; margin-top: 2px; }
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
-        .tech-item {
-          display: flex; align-items: center; gap: 10px;
-          padding: 12px 18px; background: rgba(68, 136, 255, 0.1);
-          border: 1px solid rgba(68, 136, 255, 0.3); border-radius: 10px;
-          color: #4488ff; font-size: 0.95rem; font-weight: 600;
-        }
-        .metrics-section { margin-top: 50px; margin-bottom: 40px; }
-        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .metric-card {
-          padding: 30px;
-          background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 255, 0.1));
-          border: 2px solid rgba(0, 240, 255, 0.3);
-          border-radius: 15px; text-align: center; color: var(--primary-glow);
-        }
-        .metric-card h3 { margin: 10px 0; }
-        .testimonial-section {
-          margin-top: 50px; padding: 40px;
-          background: linear-gradient(135deg, rgba(255, 0, 255, 0.05), rgba(0, 240, 255, 0.05));
-          border: 2px solid rgba(255, 0, 255, 0.3); border-radius: 15px;
-        }
-        .testimonial { font-size: 1.2rem; font-style: italic; color: var(--text-highlight); line-height: 1.8; margin: 0; }
-        .testimonial footer { margin-top: 15px; font-weight: bold; color: var(--primary-glow); }
-        
-        /* Animations */
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeOut {
           from { opacity: 1; transform: translateY(0); }
-          to { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 0; transform: translateY(-30px); }
         }
-        .fade-in { animation: fadeIn 0.3s ease-out forwards; }
-        .fade-out { animation: fadeOut 0.3s ease-in forwards; }
-
-        /* --- Responsive Design --- */
-        @media (min-width: 1600px) {
-            .main-content, .detail-content { max-width: 1500px; }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
         }
-        @media (min-width: 1800px) {
-            .main-content, .detail-content { max-width: 1700px; }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+          50% { box-shadow: 0 0 40px rgba(0, 240, 255, 0.6); }
         }
-        @media (min-width: 2000px) {
-            .main-content, .detail-content { max-width: 1900px; }
+        
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        .fade-out { animation: fadeOut 0.4s ease-out; }
+        
+        .category-btn {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
-
-        @media (max-width: 1024px) {
-            .projects-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+        
+        .category-btn:hover {
+          transform: translateY(-5px) scale(1.05) !important;
+          box-shadow: 0 15px 40px rgba(0, 240, 255, 0.4) !important;
         }
-
+        
+        .project-card {
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        
+        .project-card:hover {
+          transform: translateY(-15px) scale(1.02) !important;
+          box-shadow: 0 25px 60px rgba(0, 240, 255, 0.3), 
+                      0 0 40px rgba(255, 0, 255, 0.2) !important;
+          border-color: rgba(0, 240, 255, 0.6) !important;
+        }
+        
+        .project-card:hover img {
+          transform: scale(1.1) rotate(2deg) !important;
+        }
+        
+        .project-card:hover .card-overlay {
+          opacity: 1 !important;
+        }
+        
+        .close-btn:hover {
+          background: rgba(0, 240, 255, 0.25) !important;
+          box-shadow: 0 0 30px rgba(0, 240, 255, 0.5) !important;
+          transform: translateX(-5px) !important;
+        }
+        
+        .feature-item:hover {
+          background: rgba(0, 255, 136, 0.15) !important;
+          transform: translateX(5px) !important;
+          border-color: rgba(0, 255, 136, 0.5) !important;
+        }
+        
+        .tech-item:hover {
+          background: rgba(100, 150, 255, 0.25) !important;
+          transform: scale(1.08) !important;
+          border-color: rgba(100, 150, 255, 0.6) !important;
+        }
+        
+        .metric-card:hover {
+          transform: translateY(-10px) scale(1.05) !important;
+          box-shadow: 0 20px 60px rgba(0, 240, 255, 0.4) !important;
+        }
+        
         @media (max-width: 768px) {
-            .main-title { font-size: 3rem; }
-            .main-subtitle { font-size: 1.1rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .detail-header { height: 350px; }
-            .detail-title { font-size: 2.2rem; }
-            .detail-subtitle { font-size: 1.1rem; }
-            .detail-body { padding: 30px; }
-            .section-title { font-size: 1.6rem; }
-            .detail-text { font-size: 1rem; }
-            .close-button { top: 20px; left: 20px; padding: 10px 18px; font-size: 0.9rem;}
-            .detail-content { padding-top: 100px; }
-        }
-
-        @media (max-width: 480px) {
-            .main-content, .detail-view { padding: 20px 15px; }
-            .main-title { font-size: 2.5rem; }
-            .category-button { padding: 10px 18px; font-size: 0.9rem; }
-            .detail-header { height: 250px; }
-            .detail-overlay { padding: 25px; }
-            .detail-title { font-size: 1.8rem; }
-            .detail-meta { gap: 15px; font-size: 0.85rem; }
-            .detail-body { padding: 25px; }
-            .feature-grid, .tech-grid, .metrics-grid { grid-template-columns: 1fr; }
+          .category-btn {
+            padding: 10px 18px !important;
+            font-size: 0.85rem !important;
+          }
+          
+          .project-card:hover {
+            transform: translateY(-8px) scale(1.01) !important;
+          }
         }
       `}</style>
     </div>
   );
 };
 
-export default ProjectsPage;
+const styles = {
+  container: {
+    minHeight: '100vh',
+    background: 'linear-gradient(135deg, #080812 0%, #1a0a2e 50%, #0f0820 100%)',
+    color: '#fff',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    position: 'relative',
+    overflow: 'hidden'
+  },
+  canvas: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 0,
+    pointerEvents: 'none'
+  },
+  content: {
+    position: 'relative',
+    zIndex: 1,
+    maxWidth: '1600px',
+    margin: '0 auto',
+    padding: '60px 30px'
+  },
+  header: {
+    textAlign: 'center',
+    marginBottom: '80px'
+  },
+  mainTitle: {
+    fontSize: 'clamp(3rem, 8vw, 5rem)',
+    fontWeight: '900',
+    background: 'linear-gradient(135deg, #00f0ff 0%, #ff00ff 50%, #00ff88 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    marginBottom: '15px',
+    letterSpacing: '-2px',
+    textShadow: '0 0 60px rgba(0, 240, 255, 0.6)'
+  },
+  mainSubtitle: {
+    fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+    color: '#a0a0ff',
+    opacity: 0.9,
+    fontWeight: '300',
+    letterSpacing: '1px'
+  },
+  floatingFilterContainer: {
+    position: 'sticky',
+    top: '20px',
+    zIndex: 100,
+    background: 'rgba(15, 15, 35, 0.85)',
+    backdropFilter: 'blur(20px)',
+    borderRadius: '25px',
+    padding: '25px 30px',
+    marginBottom: '60px',
+    border: '2px solid rgba(0, 240, 255, 0.3)',
+    boxShadow: '0 10px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.2)',
+    animation: 'float 6s ease-in-out infinite'
+  },
+  filterLabel: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    color: '#00f0ff',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    marginBottom: '20px',
+    textTransform: 'uppercase',
+    letterSpacing: '2px'
+  },
+  categoryGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+    gap: '15px'
+  },
+  categoryButton: {
+    padding: '14px 20px',
+    background: 'rgba(20, 20, 50, 0.6)',
+    border: '2px solid rgba(100, 100, 150, 0.3)',
+    borderRadius: '18px',
+    color: '#fff',
+    fontSize: '0.9rem',
+    cursor: 'pointer',
+    fontWeight: '600',
+    backdropFilter: 'blur(10px)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+    whiteSpace: 'nowrap'
+  },
+  categoryIcon: {
+    fontSize: '1.2rem'
+  },
+  projectsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
+    gap: '40px',
+    marginBottom: '60px'
+  },
+  projectCard: {
+    background: 'rgba(20, 20, 45, 0.7)',
+    borderRadius: '25px',
+    overflow: 'hidden',
+    border: '2px solid rgba(0, 240, 255, 0.25)',
+    cursor: 'pointer',
+    backdropFilter: 'blur(15px)',
+    position: 'relative'
+  },
+  cardImageContainer: {
+    position: 'relative',
+    width: '100%',
+    height: '260px',
+    overflow: 'hidden'
+  },
+  cardImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+  },
+  cardOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(255, 0, 255, 0.4))',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px',
+    opacity: 0,
+    transition: 'opacity 0.4s ease',
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: '1.1rem'
+  },
+  overlayText: {
+    textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)'
+  },
+  cardContent: {
+    padding: '30px'
+  },
+  cardHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: '15px',
+    gap: '15px'
+  },
+  cardTitle: {
+    fontSize: '1.6rem',
+    fontWeight: '800',
+    background: 'linear-gradient(135deg, #00f0ff, #00ff88)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    margin: 0,
+    flex: 1,
+    lineHeight: '1.3'
+  },
+  categoryBadge: {
+    padding: '8px 14px',
+    borderRadius: '15px',
+    fontSize: '1.2rem',
+    border: '2px solid',
+    fontWeight: '600',
+    whiteSpace: 'nowrap',
+    flexShrink: 0
+  },
+  cardSubtitle: {
+    fontSize: '1rem',
+    color: '#b0b5d0',
+    marginBottom: '20px',
+    lineHeight: '1.6',
+    fontWeight: '400'
+  },
+  cardTags: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '10px',
+    marginBottom: '20px'
+  },
+  tag: {
+    padding: '8px 16px',
+    background: 'rgba(0, 255, 136, 0.1)',
+    border: '1.5px solid rgba(0, 255, 136, 0.4)',
+    borderRadius: '18px',
+    fontSize: '0.85rem',
+    color: '#00ff88',
+    fontWeight: '500'
+  },
+  cardFooter: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '15px',
+    paddingTop: '20px',
+    borderTop: '1px solid rgba(100, 100, 150, 0.2)',
+    fontSize: '0.85rem',
+    flexWrap: 'wrap'
+  },
+  clientBadge: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    color: '#00f0ff',
+    fontWeight: '500'
+  },
+  durationBadge: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    color: '#ff00ff',
+    fontWeight: '500'
+  },
+  detailView: {
+    position: 'relative',
+    zIndex: 1,
+    maxWidth: '1600px',
+    margin: '0 auto',
+    padding: '30px 20px',
+    minHeight: '100vh'
+  },
+  closeButton: {
+    position: 'fixed',
+    top: '30px',
+    left: '30px',
+    padding: '14px 28px',
+    background: 'rgba(0, 240, 255, 0.15)',
+    border: '2px solid #00f0ff',
+    borderRadius: '30px',
+    color: '#00f0ff',
+    fontSize: '1rem',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+    zIndex: 1000,
+    transition: 'all 0.3s ease',
+    fontWeight: '700',
+    backdropFilter: 'blur(15px)',
+    boxShadow: '0 5px 25px rgba(0, 240, 255, 0.3)'
+  },
+  detailContent: {
+    paddingTop: '100px'
+  },
+  detailHeader: {
+    position: 'relative',
+    width: '100%',
+    height: 'clamp(400px, 50vh, 600px)',
+    borderRadius: '30px',
+    overflow: 'hidden',
+    marginBottom: '60px',
+    border: '3px solid rgba(0, 240, 255, 0.4)',
+    boxShadow: '0 0 60px rgba(0, 240, 255, 0.3)'
+  },
+  detailImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover'
+  },
+  detailOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: '50px',
+    background: 'linear-gradient(to top, rgba(8, 8, 18, 0.98) 0%, rgba(8, 8, 18, 0.7) 70%, transparent 100%)',
+    backdropFilter: 'blur(10px)'
+  },
+  detailTitle: {
+    fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+    fontWeight: '900',
+    background: 'linear-gradient(135deg, #00f0ff 0%, #ff00ff 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    marginBottom: '15px',
+    letterSpacing: '-1px'
+  },
+  detailSubtitle: {
+    fontSize: 'clamp(1rem, 2vw, 1.4rem)',
+    color: '#c0c5e0',
+    marginBottom: '25px',
+    fontWeight: '400'
+  },
+  detailMeta: {
+    display: 'flex',
+    gap: '35px',
+    fontSize: '1rem',
+    color: '#00ff88',
+    flexWrap: 'wrap',
+    fontWeight: '500'
+  },
+  detailBody: {
+    background: 'rgba(20, 20, 45, 0.7)',
+    borderRadius: '30px',
+    padding: 'clamp(30px, 5vw, 60px)',
+    border: '2px solid rgba(0, 240, 255, 0.25)',
+    backdropFilter: 'blur(15px)',
+    boxShadow: '0 10px 50px rgba(0, 0, 0, 0.3)'
+  },
+  detailSection: {
+    marginBottom: '50px'
+  },
+  sectionTitle: {
+    fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+    fontWeight: '800',
+    color: '#00f0ff',
+    marginBottom: '25px',
+    display: 'flex',
+    alignItems: 'center',
+    paddingBottom: '15px',
+    borderBottom: '2px solid rgba(0, 240, 255, 0.3)'
+  },
+  detailText: {
+    fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
+    lineHeight: '1.9',
+    color: '#d5d8f0',
+    marginBottom: '20px',
+    fontWeight: '400'
+  },
+  clientInfo: {
+    padding: '20px 25px',
+    background: 'rgba(0, 240, 255, 0.08)',
+    border: '2px solid rgba(0, 240, 255, 0.3)',
+    borderRadius: '15px',
+    color: '#00f0ff',
+    fontSize: '1.05rem',
+    marginTop: '20px',
+    fontWeight: '600'
+  },
+  tagsContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '15px',
+    marginBottom: '50px'
+  },
+  detailTag: {
+    padding: '12px 24px',
+    background: 'rgba(255, 0, 255, 0.12)',
+    border: '2px solid rgba(255, 0, 255, 0.5)',
+    borderRadius: '25px',
+    fontSize: '1rem',
+    color: '#ff00ff',
+    fontWeight: '700',
+    boxShadow: '0 0 20px rgba(255, 0, 255, 0.3)'
+  },
+  twoColumnSection: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '40px',
+    marginBottom: '50px'
+  },
+  featureGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '18px'
+  },
+  featureItem: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: '15px',
+    padding: '18px 20px',
+    background: 'rgba(0, 255, 136, 0.08)',
+    border: '2px solid rgba(0, 255, 136, 0.25)',
+    borderRadius: '12px',
+    color: '#d5d8f0',
+    fontSize: '1rem',
+    transition: 'all 0.3s ease'
+  },
+  checkIcon: {
+    color: '#00ff88',
+    flexShrink: 0,
+    marginTop: '3px'
+  },
+  techGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+    gap: '18px'
+  },
+  techItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    padding: '16px 22px',
+    background: 'rgba(68, 136, 255, 0.12)',
+    border: '2px solid rgba(68, 136, 255, 0.35)',
+    borderRadius: '15px',
+    color: '#6495ff',
+    fontSize: '1rem',
+    fontWeight: '600',
+    transition: 'all 0.3s ease'
+  },
+  techDot: {
+    width: '10px',
+    height: '10px',
+    borderRadius: '50%',
+    background: 'linear-gradient(135deg, #4488ff, #00f0ff)',
+    boxShadow: '0 0 10px #4488ff'
+  },
+  metricsSection: {
+    marginTop: '60px',
+    marginBottom: '50px'
+  },
+  metricsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '30px'
+  },
+  metricCard: {
+    padding: '40px 30px',
+    background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.12), rgba(255, 0, 255, 0.12))',
+    border: '2px solid rgba(0, 240, 255, 0.4)',
+    borderRadius: '20px',
+    textAlign: 'center',
+    transition: 'all 0.4s ease',
+    boxShadow: '0 10px 40px rgba(0, 240, 255, 0.2)'
+  },
+  testimonialSection: {
+    marginTop: '60px',
+    padding: '50px',
+    background: 'linear-gradient(135deg, rgba(255, 0, 255, 0.08), rgba(0, 240, 255, 0.08))',
+    border: '2px solid rgba(255, 0, 255, 0.35)',
+    borderRadius: '20px',
+    boxShadow: '0 0 40px rgba(255, 0, 255, 0.2)'
+  },
+  testimonial: {
+    fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+    fontStyle: 'italic',
+    color: '#d5d8f0',
+    lineHeight: '1.9',
+    margin: 0,
+    fontWeight: '400'
+  }
+};
 
+export default ProjectsPage;

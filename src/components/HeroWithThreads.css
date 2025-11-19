@@ -1,0 +1,459 @@
+/* Hero Container */
+.hw-hero {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  overflow: hidden;
+
+}
+
+/* Threads Background */
+.hw-threads-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Gradient Overlays */
+.hw-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hw-overlay-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Content Wrapper */
+.hw-content-wrapper {
+  position: relative;
+  z-index: 10;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.hw-content-inner {
+  max-width: 1280px;
+  width: 100%;
+}
+
+/* Text Content */
+.hw-text-content {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hw-title {
+  margin: 0 0 1.5rem 0;
+  font-size: 2.75rem;
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -4px;
+  padding:7rem 0 1rem;
+  line-height: 100%;
+  color: #ffffff;
+}
+
+.hw-title-gradient {
+  display: inline-block;
+  background: linear-gradient(90deg, #ffffff 0%, #e9d5ff 50%, #fce7f3 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+  line-height: 100%;
+  letter-spacing: -4px;
+  font-family: "Sitka Heading", Georgia, Cambria, Calibri;
+  
+}
+
+
+
+.hw-subtitle {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #d8b4fe;
+  letter-spacing: 0.025em;
+}
+
+.hw-description {
+  margin: 0 auto;
+  max-width: 768px;
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: #d1d5db;
+  padding: 0 1rem;
+  font-family: "gt", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* CTA Buttons */
+.hw-cta-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: stretch;
+  justify-content: center;
+  margin: 0 auto 5rem auto;
+  max-width: 672px;
+  padding: 0 1rem;
+}
+
+.hw-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2.5rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.hw-btn-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.hw-btn-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+/* Primary Button */
+.hw-btn-primary {
+  background: linear-gradient(90deg, #a855f7 0%, #ec4899 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 40px rgba(168, 85, 247, 0.3);
+}
+
+.hw-btn-primary .hw-btn-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #ec4899 0%, #a855f7 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hw-btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 60px rgba(168, 85, 247, 0.5);
+}
+
+.hw-btn-primary:hover .hw-btn-overlay {
+  opacity: 1;
+}
+
+.hw-btn-primary:hover .hw-btn-icon {
+  transform: translateX(0.5rem);
+}
+
+/* Secondary Button */
+.hw-btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.hw-btn-secondary:hover {
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hw-btn-secondary:hover .hw-btn-icon {
+  transform: translateX(0.5rem);
+}
+
+/* Feature Badges */
+.hw-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.hw-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  backdrop-filter: blur(12px);
+  border-radius: 9999px;
+  border: 1px solid;
+  transition: all 0.3s ease;
+}
+
+.hw-badge-icon-wrapper {
+  padding: 0.375rem;
+  border-radius: 9999px;
+}
+
+.hw-badge-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.hw-badge-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* Badge Color Variants */
+.hw-badge-purple {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+.hw-badge-purple .hw-badge-icon-wrapper {
+  background: rgba(168, 85, 247, 0.2);
+}
+
+.hw-badge-purple .hw-badge-icon {
+  color: #d8b4fe;
+}
+
+.hw-badge-purple:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.2);
+}
+
+.hw-badge-blue {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.hw-badge-blue .hw-badge-icon-wrapper {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.hw-badge-blue .hw-badge-icon {
+  color: #93c5fd;
+}
+
+.hw-badge-blue:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+.hw-badge-pink {
+  background: linear-gradient(90deg, rgba(236, 72, 153, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border-color: rgba(236, 72, 153, 0.2);
+}
+
+.hw-badge-pink .hw-badge-icon-wrapper {
+  background: rgba(236, 72, 153, 0.2);
+}
+
+.hw-badge-pink .hw-badge-icon {
+  color: #fbcfe8;
+}
+
+.hw-badge-pink:hover {
+  border-color: rgba(236, 72, 153, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.2);
+}
+
+/* Scroll Indicator */
+.hw-scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-decoration: none;
+}
+
+.hw-scroll-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+.hw-scroll-text {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hw-scroll-mouse {
+  width: 1.5rem;
+  height: 2.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  padding: 0.25rem;
+  transition: border-color 0.3s ease;
+}
+
+.hw-scroll-indicator:hover .hw-scroll-mouse {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.hw-scroll-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 9999px;
+  animation: scroll-dot 1.5s ease-in-out infinite;
+}
+
+.hw-scroll-indicator:hover .hw-scroll-dot {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scroll-dot {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .hw-title {
+    font-size: 4.5rem;
+  }
+
+  .hw-subtitle {
+    font-size: 2.25rem;
+  }
+
+  .hw-description {
+    font-size: 1.25rem;
+  }
+
+  .hw-cta-container {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .hw-badge-text {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hw-title {
+    font-size: 7rem;
+  }
+
+  .hw-subtitle {
+    font-size: 3rem;
+  }
+
+  .hw-description {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hw-title {
+    font-size: 7rem;
+  }
+
+  .hw-subtitle {
+    font-size: 3.75rem;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 639px) {
+  .hw-hero{
+    min-height: 50vh;
+  }
+  .hw-content-wrapper {
+    padding: 3rem 1rem;
+    min-height:50vh;
+  }
+
+  .hw-text-content {
+    margin-bottom: 3rem;
+  }
+
+  .hw-title {
+    font-size: 2.5rem;
+  }
+
+  .hw-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .hw-description {
+    font-size: 1rem;
+  }
+
+  .hw-cta-container {
+    margin-bottom: 3rem;
+  }
+
+  .hw-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .hw-badges {
+    gap: 0.75rem;
+  }
+
+  .hw-badge {
+    padding: 0.625rem 1rem;
+  }
+
+  .hw-badge-text {
+    font-size: 0.813rem;
+  }
+}

@@ -1,0 +1,80 @@
+*{
+   -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+/* Add this to your main CSS file (App.css or index.css) */
+
+/* Dark Mode Background - Animated */
+body {
+  min-height: 100vh;
+  margin: 0;
+  transition: background 0.5s ease;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(147, 51, 234, 0.2) 0%,
+      transparent 50%,
+      rgba(59, 130, 246, 0.2) 100%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.05) 50%,
+      rgba(0, 0, 0, 0.6) 100%
+    ),
+    #000000;
+  background-size: 200% 200%, 100% 100%, 100% 100%;
+  animation: darkGradientMove 20s ease infinite;
+}
+
+/* Light Mode Background - Animated */
+body.light-mode {
+  background:hsla(36, 31%, 90%, 1);
+  background-size: 400% 400%;
+  animation: lightGradientMove 15s ease infinite;
+}
+
+@keyframes darkGradientMove {
+  0% {
+    background-position: 0% 50%, 0% 0%, 0% 0%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 0%, 0% 0%;
+  }
+  100% {
+    background-position: 0% 50%, 0% 0%, 0% 0%;
+  }
+}
+
+@keyframes lightGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+body.light-mode {
+  color: #025a4e;
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6,
+body.light-mode p,
+body.light-mode span,
+body.light-mode div {
+  color: #025a4e;
+    -webkit-text-fill-color:  #025a4e;
+
+}
+body.ligjt-mode li{
+    color:#4c6763;
+}

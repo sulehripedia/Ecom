@@ -1,0 +1,198 @@
+/* Footer.css */
+
+.footer {
+  transition: background-color 0.3s ease;
+  padding: 7rem 0;
+  
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media (max-width: 767px){
+  .footer-copyright{
+    display: none;
+  }
+  .footer-container {
+
+  padding: 0 3rem;
+}
+.footer-heading{
+  font-size: 16px;
+}
+.footer-link{
+  font-size: 14px;
+}
+
+}
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+  }
+}
+
+.footer-copyright {
+  font-size: 18px;
+  color: #d1d5db;
+  opacity: 70%;
+font-family: "Sitka Text",Georgia, Cambria, Calibri;
+}
+
+.footer-light .footer-copyright {
+  color: #374151;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.footer-heading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #6ee7b7;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.footer-light .footer-heading {
+  color: #059669;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-link {
+  font-size: 18px;
+  color: #d1d5db;
+  text-decoration: none;
+  font-family: cursive;
+  transition: color 0.2s ease;
+  font-weight: 500;
+  opacity: 70%;
+}
+
+.footer-link:hover {
+  color: #6ee7b7;
+}
+
+.footer-light .footer-link {
+  color: #374151;
+}
+
+.footer-light .footer-link:hover {
+  color: #059669;
+}
+
+/* Toggle Container */
+.toggle-container {
+  margin-top: 7rem;
+  position: relative;
+}
+
+.toggle-timeline {
+  position: relative;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Markers */
+.toggle-markers {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+
+.toggle-marker {
+  width: 2px;
+  height: 1rem;
+  background-color: #4b5563;
+  transition: background-color 0.3s ease;
+}
+
+.footer-light .toggle-marker {
+  background-color: #9ca3af;
+}
+
+.toggle-marker-tall {
+  height: 1.5rem;
+}
+
+/* Toggle Button */
+.toggle-button {
+  position: relative;
+  z-index: 10;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  cursor: grab;
+  transition: transform 0.15s ease, background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+  transform: scale(1.1);
+}
+
+.toggle-button:active,
+.toggle-button-dragging {
+  cursor: grabbing;
+}
+
+.toggle-button-dragging {
+  transform: scale(1.1);
+}
+
+.toggle-button-dark {
+  background-color: #6ee7b7;
+}
+
+.toggle-button-light {
+  background-color: #fbbf24;
+}
+
+.toggle-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #1f2937;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .footer-links {
+    gap: 4rem;
+  }
+  
+  .toggle-container {
+    margin-top: 2rem;
+  }
+}
