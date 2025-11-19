@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, Brain, Search, Zap, Globe, Code, BookOpen, Sparkles, Loader2, X, Settings } from 'lucide-react';
 
 // Import the CSS file you will create below
-import './AIAgent.css';
+import './AiAgent.css';
 
 const FreeAIAgent = () => {
   const [messages, setMessages] = useState([
