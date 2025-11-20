@@ -8,11 +8,9 @@ export default function Footer() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
 
-  const maxPosition = 200; // Maximum drag distance
+  const maxPosition = 200; 
 
-  // Initialize theme on mount
   useEffect(() => {
-    // Check if there's a saved theme preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
       setIsDark(false);
@@ -65,7 +63,6 @@ export default function Footer() {
     if (!isDragging) return;
     setIsDragging(false);
     
-    // Snap to nearest position
     if (position > maxPosition / 2) {
       setPosition(maxPosition);
       setIsDark(false);
@@ -117,7 +114,6 @@ export default function Footer() {
               <h3 className="footer-heading">Elsewhere</h3>
               <ul className="footer-list">
                 <li><a href="#" className="footer-link">Github</a></li>
-                <li><a href="#" className="footer-link">Contact</a></li>
                 <li><a href="#" className="footer-link">Testimonials</a></li>
                 <li><a href="#" className="footer-link">CV</a></li>
                 <li><a href="#" className="footer-link">LinkedIn</a></li>

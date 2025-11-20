@@ -113,7 +113,7 @@ body.light-mode .info h3{
         }
 
         .year {
-            font-size: 1.6rem;
+            font-size: clamp(1.375rem, 1.1837rem + .8163vw, 1.6rem);
             font-weight: 600;
             margin-left: 30px;
             letter-spacing: -1px;
@@ -162,6 +162,7 @@ body.light-mode .info h3{
                 }
                 .about-heading{
                 letter-spacing: -2px;
+                font-weight: 600 !important;
                 }
                 .about-header-div{
                     padding: 8rem 0rem 3rem;
