@@ -127,6 +127,14 @@ I'm a Full-Stack Developer Working remotely from Lahore, Pakistan.
         </div>
     </div>
     </div>
+    <div className='ppp about-p-main'>
+        <p className='ppp p-gap'>Before I became a full-stack developer, I was simply someone who loved making things work. During my Bachelor’s in Computer Science, I spent countless late nights building projects, breaking them, and rebuilding them—chasing the excitement of bringing ideas to life through code.</p>
+<br /> <p className='ppp p-gap'>My Shopify journey started the same way: small experiments, custom sections, recreating app features just to see if I could. Those experiments grew into client work, real projects, and a deep focus on intentional, user-centered development.</p>
+<br />
+<p className='ppp p-gap'>Working with DreamGrowth HQ, Nordblooms, and Daran Holdings taught me that great products don’t happen by accident—they’re crafted with care, clarity, and purpose.</p>
+<br />
+<p className='ppp p-gap'>Today, I work remotely from Lahore, Pakistan, helping brands scale through thoughtful engineering and clean, reliable design. And I continue to learn, experiment, and push myself with every project.</p>
+    </div>
     </>
 
   );

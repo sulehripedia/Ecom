@@ -214,7 +214,7 @@ body.light-mode .info h3{
 }
 .about-h2-more{
     margin-top: 30px;
-    font-size: clamp(1.875rem, 1.301rem + 2.449vw, 3.95rem);
+    font-size: clamp(1rem, 1.301rem + 2vw, 3.95rem);
 }
    :root {
             --pine-dark: #1e463a;
@@ -292,6 +292,16 @@ body.light-mode .info h3{
             .point-title {
                 font-size: 1.875rem; 
             }
+            .about-p-main{
+    max-width: 800px !important;
+    margin: 0rem auto !important;
+    padding: 0px 25px !important;
+}
+.ppp{
+    font-weight: 400 !important;
+    font-size: 21px !important;
+    line-height: 160%;
+}
         }
 
         .point-description {
@@ -299,3 +309,11 @@ body.light-mode .info h3{
             line-height: 1.625;
   font-family: 'GT Planar', sans-serif;
         }
+.about-p-main{
+    max-width: 1600px;
+    margin: 3rem 0rem;
+    padding: 0px 25px;
+}
+.ppp{
+    font-weight: 500;
+}
