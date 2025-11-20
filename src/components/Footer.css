@@ -45,7 +45,6 @@
   font-size: 18px;
   color: #d1d5db;
   opacity: 70%;
-font-family: "Sitka Text",Georgia, Cambria, Calibri;
 }
 
 .footer-light .footer-copyright {
@@ -68,7 +67,6 @@ font-family: "Sitka Text",Georgia, Cambria, Calibri;
   font-weight: 600;
   margin-bottom: 1rem;
   color: #6ee7b7;
-  font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 .footer-light .footer-heading {
@@ -88,7 +86,6 @@ font-family: "Sitka Text",Georgia, Cambria, Calibri;
   font-size: 18px;
   color: #d1d5db;
   text-decoration: none;
-  font-family: cursive;
   transition: color 0.2s ease;
   font-weight: 500;
   opacity: 70%;

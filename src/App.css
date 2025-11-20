@@ -30,8 +30,28 @@ body {
 
 /* Light Mode Background - Animated */
 body.light-mode {
-  background:hsla(36, 31%, 90%, 1);
-  background-size: 400% 400%;
+background:
+  linear-gradient(
+    to bottom,
+    hsla(36, 31%, 90%, 0) 0%,
+    hsla(36, 31%, 90%, 0.013) 9.7%,
+    hsla(36, 31%, 90%, 0.049) 18.1%,
+    hsla(36, 31%, 90%, 0.104) 25.5%,
+    hsla(36, 31%, 90%, 0.175) 31.9%,
+    hsla(36, 31%, 90%, 0.259) 37.7%,
+    hsla(36, 31%, 90%, 0.352) 43%,
+    hsla(36, 31%, 90%, 0.45) 47.9%,
+    hsla(36, 31%, 90%, 0.55) 52.8%,
+    hsla(36, 31%, 90%, 0.648) 57.7%,
+    hsla(36, 31%, 90%, 0.741) 63%,
+    hsla(36, 31%, 90%, 0.825) 68.7%,
+    hsla(36, 31%, 90%, 0.896) 75%,
+    hsla(36, 31%, 90%, 0.951) 82.2%,
+    hsla(36, 31%, 90%, 0.987) 90.5%,
+    hsl(36, 31%, 90%) 100%
+  ),
+  rgb(237, 231, 222);
+    background-size: 400% 400%;
   animation: lightGradientMove 15s ease infinite;
 }
 
@@ -78,3 +98,83 @@ body.light-mode div {
 body.ligjt-mode li{
     color:#4c6763;
 }
+
+@font-face {
+  font-family: "Acorn";
+  src: url("./assets/fonts/Acorn-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Acorn";
+  src: url("./assets/fonts/Acorn-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Acorn";
+  src: url("./assets/fonts/Acorn-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Acorn";
+  src: url("./assets/fonts/Acorn-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Acorn";
+  src: url("./assets/fonts/Acorn-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Acorn";
+  src: url("./assets/fonts/Acorn-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Acorn";
+  src: url("./assets/fonts/Acorn-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GT Planar';
+  src: url('/src/assets/fonts/GT-Planar-Regular.woff2') format('woff2');
+  font-weight: 400; 
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GT Planar';
+  src: url('/src/assets/fonts/GT-Planar-Medium.woff2') format('woff2');
+  font-weight: 500; 
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GT Planar';
+  src: url('/src/assets/fonts/GT-Planar-Retalic-45-Medium.woff2') format('woff2');
+  font-weight: 500; 
+  font-style: italic; 
+}
+body {
+  font-family: "Acorn", sans-serif;
+}
+h1, h2 {
+  font-family: "Acorn", sans-serif;
+}
+p,
+a {
+  font-family: 'GT Planar', sans-serif;
+}
+

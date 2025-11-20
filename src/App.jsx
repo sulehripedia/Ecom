@@ -8,32 +8,22 @@ import FreeAIAgent from './components/AiAgent';
 import Portfolio from './components/ProjectPage';
 import TestHome from './pages/TestHome';
 import PillNav from './components/PillNav';
+import Footer from './components/Footer';
+import About from './pages/About';
 
 function App() {
 
   return (
     <BrowserRouter>
     {/* <StaggeredMenu /> */}
-   <PillNav
-  items={[
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Services', href: '/services' },
-    { label: 'Contact', href: '/contact' }
-  ]}
-  activeHref="/"
-  className="custom-nav"
-  ease="power2.easeOut"
-  baseColor="#000000"
-  pillColor="#ffffff"
-  hoveredPillTextColor="#ffffff"
-  pillTextColor="#000000"
-/>
+        <PillNav/>
         <Routes>
        <Route path='/projects' element={<ProjectsPage />}/>
        <Route path='/' element={<TestHome/>}/>
        <Route path='/ai-agent' element={<FreeAIAgent />} />
+       <Route path='/about' element={<About />} />
       </Routes>
+       <Footer />
        </BrowserRouter>
   );
 }

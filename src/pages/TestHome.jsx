@@ -10,9 +10,7 @@ const TestHome = () => {
      <HeroWithThreads/>
      <MyWork/>
      <InProgress />
-     <InProgressWork />
-     <Footer />
-    
+     <InProgressWork />    
     </>
   );
 };
