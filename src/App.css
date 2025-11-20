@@ -78,26 +78,35 @@ background:
     background-position: 0% 50%;
   }
 }
-body.light-mode {
-  color: #025a4e;
+body.light-mode,
+body.light-mode a
+ {
+  color: #4c6763;
 }
 
 body.light-mode h1,
 body.light-mode h2,
-body.light-mode h3,
 body.light-mode h4,
-body.light-mode h5,
-body.light-mode h6,
-body.light-mode p,
-body.light-mode span,
-body.light-mode div {
+body.light-mode h5
+ {
   color: #025a4e;
     -webkit-text-fill-color:  #025a4e;
 
 }
-body.ligjt-mode li{
-    color:#4c6763;
+body.light-mode p
+{
+    color: #4c6763;
+        -webkit-text-fill-color: #4c6763;
+
 }
+body.light-mode h3,
+body.light-mode span,
+a
+{
+  color: rgb(237, 231, 222);
+}
+
+
 
 @font-face {
   font-family: "Acorn";

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import "./PillNav.css";
 
 const PillNav = () => {
@@ -6,7 +7,9 @@ const PillNav = () => {
   const [hoverItem, setHoverItem] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
-  const navItems = ["Work", "About", "Play", "Notes", "Contact"];
+  const navItems = [{name:"Work", link:"/"}, {name: "About", link: "/about"}, {name:"Play", link: "/play"}, 
+    {name: "Notes", link:"/notes"}, {name: "Contact", link:"/contact"}];
+  
 
   useEffect(() => {
     const onScroll = () => {
@@ -24,26 +27,25 @@ const PillNav = () => {
         <nav className={`pillnav-container ${scrolled ? "scrolled" : ""}`}>
           {navItems.map((item) => (
             <div key={item} className="pillnav-item-wrapper">
-              <button
-                onClick={() => setActiveItem(item)}
-                onMouseEnter={() => setHoverItem(item)}
+              <NavLink to={item.link}
+                onClick={() => setActiveItem(item.name)}
+                onMouseEnter={() => setHoverItem(item.name)}
                 onMouseLeave={() => setHoverItem(null)}
-                className={`pillnav-button ${activeItem === item ? "active" : ""} ${
-                  hoverItem === item && activeItem !== item ? "hover" : ""
-                } ${item === "Work" ? "pillnav-button-work" : ""}`}
-                aria-current={activeItem === item ? "page" : undefined}
+                className={`pillnav-button ${activeItem === item.name ? "active" : ""} ${
+                  hoverItem === item.name && activeItem !== item.name ? "hover" : ""
+                } ${item.name === "Work" ? "pillnav-button-work" : ""}`}
+                aria-current={activeItem === item.name ? "page" : undefined}
               >
-                {item}
-                {item === "Work" && ( // Conditionally render the slash icon for "Work"
+                {item.name}
+                {item.name === "Work" && (
                   <span className="pillnav-work-icon">/</span>
                 )}
-              </button>
+              </NavLink>
             </div>
           ))}
         </nav>
       </header>
 
-      {/* Spacer to prevent content from sliding under fixed header */}
       <div className="pillnav-spacer" />
     </>
   );

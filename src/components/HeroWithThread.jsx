@@ -32,8 +32,8 @@ export default function HeroWithThreads({
           <div className="hw-text-content">
             {/* Name with gradient effect */}
             <h1 className="hw-title">
-              <span className="hw-title-gradient">{title}</span><br />
-              <span className="hw-title-gradient">{subtitle}</span>
+              <h1 className="hw-title-gradient">{title}</h1><br />
+              <h1 className="hw-title-gradient">{subtitle}</h1>
             </h1>
             
             {/* Subtitle and description */}

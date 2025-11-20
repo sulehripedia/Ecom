@@ -15,6 +15,7 @@ const InProgressWork = () => {
             image: './daran-holding.png',
             link: '#',
             gradient: 'white',
+            color: 'black',
         },
         {
             id: 2,
@@ -39,13 +40,11 @@ const InProgressWork = () => {
                             style={{ background: project.gradient }}
                             onMouseEnter={() => setHoveredId(project.id)}
                             onMouseLeave={() => setHoveredId(null)}
-                        >
-                            <div className="card-overlay"></div>
-                            
+                        >                            
                             <div className="card-content">
                                 <div className="card-header">
-                                    <p className="card-caption"  style={{ color: project.color }}>{project.caption}</p>
-                                    <h2 className="card-heading" style={{ color: project.color }}>{project.heading}</h2>
+                                    <h6 className="card-caption"  style={{ color: project.color }}>{project.caption}</h6>
+                                    <h6 className="card-heading" style={{ color: project.color }}>{project.heading}</h6>
                                 </div>
 
                                 <div className="card-image-wrapper">

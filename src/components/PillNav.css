@@ -1,9 +1,7 @@
 :root {
---header-height: 64px; /* change this if you want a different header height */
+--header-height: 64px;
 --bg-base: #000000;
 }
-
-/* Fixed header positioned at the top */
 .pillnav-header {
 position: fixed;
 top: 1rem;
@@ -14,20 +12,11 @@ display: flex;
 align-items: center;
 justify-content: center;
 z-index: 9999;
-
-/* initial transparent background (no blur) */
 background-color: transparent;
 -webkit-backdrop-filter: none;
 backdrop-filter: none;
 transition: background-color 240ms ease, backdrop-filter 240ms ease, box-shadow 240ms ease;
 }
-
-/* .pillnav-header.scrolled {
--webkit-backdrop-filter: blur(8px);
-backdrop-filter: blur(8px);
-background-color: rgba(30, 30, 30, 0.1); 
-box-shadow: 0 6px 18px rgba(10, 10, 10, 0.18);
-} */
 
 .pillnav-container.scrolled {
     -webkit-backdrop-filter: blur(8px);
@@ -45,17 +34,12 @@ border-radius: 9999px;
 background-color: transparent; 
 margin: 0 12px;
 }
-
-/* Item wrapper */
 .pillnav-item-wrapper {
 position: relative;
 }
-
-
 .pillnav-button {
 position: relative;
 padding: 0.5rem 1.5rem;
-color: white;
 font-weight: 500;
 border: none;
 cursor: pointer;
@@ -63,39 +47,30 @@ border-radius: 9999px;
 background-color: transparent;
 z-index: 2;
 transition: background-color 0.3s ease, transform 0.3s ease, backdrop-filter 0.3s ease;
-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 font-size: 15px;
 display: flex; 
 align-items: center;
 gap: 0.5rem;
 }
-
-
 .pillnav-button.active {
 background-color: rgba(255, 255, 255, 0.15); 
 -webkit-backdrop-filter: blur(5px); 
 backdrop-filter: blur(5px);
 }
-
-/* Hover scale effect (only when not active) */
 .pillnav-button.hover {
 transform: scale(1.05);
 }
-
-
 .pillnav-button-work {
 background-color:transparent; 
 -webkit-backdrop-filter: blur(5px);
 backdrop-filter: blur(5px);
 padding-right: 0.5rem; 
 }
-
 .pillnav-button-work.active {
 background-color:  rgba(255, 255, 255, 0.15); ;
 -webkit-backdrop-filter: blur(8px);
 backdrop-filter: blur(8px);
 }
-
 .pillnav-work-icon {
 display: inline-flex;
 justify-content: center;
@@ -112,25 +87,19 @@ color: #8ed0bb;
 margin-left: 0.5rem; 
 border: 1px solid rgba(255, 255, 255, 0.2); 
 }
-
-
-
 @media (max-width: 520px) {
 .pillnav-container {
 padding: 0.35rem 0.5rem;
 gap: 0px;
 }
-
 .pillnav-button {
 padding: 0.4rem 0.9rem;
 font-size: 14px;
 gap: 0.25rem;
 }
-
 .pillnav-button-work {
 padding-right: 0.4rem;
 }
-
 .pillnav-work-icon {
 width: 24px;
 height: 24px;

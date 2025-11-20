@@ -35,12 +35,12 @@
                 .card-overlay {
                     position: absolute;
                     inset: 0;
-                    background-color: rgba(0, 0, 0, 0);
+                    background-color: rgba(0, 0, 0, 0.1);
                     transition: background-color 0.5s ease;
                 }
 
                 .project-card:hover .card-overlay {
-                    background-color: rgba(0, 0, 0, 0.1);
+                    background-color: rgba(0, 0, 0, 0);
                 }
 
                 .card-content {
@@ -61,7 +61,6 @@
                     font-weight: 500;
                     color: #364442;
                     margin-bottom: 8px;
-                    opacity: 0.7;
                     transition: opacity 0.3s ease;
                     text-transform: uppercase;
                     font-size: 15px;
@@ -80,37 +79,30 @@
                     letter-spacing: -0.02em;
                     margin: 0;
                 }
-
-                /* --- SCROLLING IMAGE STYLES START HERE (UPDATED) --- */
-
                 .card-image-wrapper {
                     flex: 1;
                     position: relative;
                     margin-top: 2rem;
                     display: flex;
-                    align-items: flex-start; /* Start image at the top */
+                    align-items: flex-start; 
                     justify-content: center;
-                    /* Set a fixed height for the visible area (the viewport) */
                     height: 300px; 
-                    overflow: hidden; /* Critical: Clips the image to the wrapper's height */
+                    overflow: hidden; 
                 }
 
                 .card-image {
                     width: 100%;
-                    height: auto; /* Allows image to be its natural, full height */
+                    height: auto;
                     object-fit: contain;
                     filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
-                    /* Long, linear transition for smooth scrolling (12 seconds) */
                     transition: transform 12s linear; 
-                    transform: translateY(0); /* Start position */
+                    transform: translateY(0); 
                 }
 
                 .project-card:hover .card-image {
-                    /* Scrolls the image up by 85% of its height to simulate viewing the end of a long page */
-                    transform: translateY(-85%); 
+                    transform: translateY(-35%); 
                 }
 
-                /* --- SCROLLING IMAGE STYLES END HERE --- */
 
                 .card-cta {
                     position: absolute;
@@ -130,9 +122,6 @@
                     transform: translateX(0);
                 }
 
-                /* --- Responsive Layouts (Media Queries) --- */
-
-                /* Tablet/Small Desktop (min-width: 640px) */
                 @media (min-width: 640px) {
                     .projects-grid {
                         grid-template-columns: repeat(2, 1fr);
@@ -154,7 +143,7 @@
                     
                     .projects-grid {
                         grid-template-columns: repeat(10, 1fr);
-                        gap: 16px;
+                        gap: 40px;
                     }
 
                     /* 30% / 70% Split (Row 1) */
