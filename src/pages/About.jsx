@@ -26,7 +26,7 @@ I'm a Full-Stack Developer Working remotely from Lahore, Pakistan.
         <div class="card step-5">
             <div class="info">
                 <h3>DreamGrowth HQ</h3>
-                <span>Landing Page Developer</span>
+                <span className='span-about'>Landing Page Developer</span>
             </div>
             <div class="year">22~</div>
         </div>
@@ -34,15 +34,15 @@ I'm a Full-Stack Developer Working remotely from Lahore, Pakistan.
         <div class="card step-4">
             <div class="info">
                 <h3>Nordblooms</h3>
-                <span>Shopify developer & CRO Expert</span>
+                <span className='span-about'>Shopify developer & CRO Expert</span>
             </div>
-            <div class="year">15–23</div>
+            <div class="year">15-23</div>
         </div>
 
         <div class="card step-3">
             <div class="info">
                 <h3>Freelance</h3>
-                <span>Full-Stack Developer</span>
+                <span className='span-about'>Full-Stack Developer</span>
             </div>
             <div class="year">12~</div>
         </div>
@@ -50,23 +50,23 @@ I'm a Full-Stack Developer Working remotely from Lahore, Pakistan.
         <div class="card step-2">
             <div class="info">
                 <h3>Dotfusion</h3>
-                <span>Design / Dev</span>
+                <span className='span-about'>Design / Dev</span>
             </div>
-            <div class="year">10–14</div>
+            <div class="year">10-14</div>
         </div>
 
         <div class="card step-1">
             <div class="info">
                 <h3>Astrapi Technologies</h3>
-                <span>CSR - Closer</span>
+                <span className='span-about'>CSR - Closer</span>
             </div>
-            <div class="year">7–10</div>
+            <div class="year">7-10</div>
         </div>
 
     </div>
     <div className='about-grid-2'>
         <h2 className='about-h2 about-h2-more'>
-            Let’s collaborate if you value clarity, performance, sustainability or purposeful design.
+            Let's collaborate if you value clarity, performance, sustainability or purposeful design.
         </h2>
         </div>
         <div className='about-grid-2'>
@@ -128,13 +128,26 @@ I'm a Full-Stack Developer Working remotely from Lahore, Pakistan.
     </div>
     </div>
     <div className='ppp about-p-main'>
-        <p className='ppp p-gap'>Before I became a full-stack developer, I was simply someone who loved making things work. During my Bachelor’s in Computer Science, I spent countless late nights building projects, breaking them, and rebuilding them—chasing the excitement of bringing ideas to life through code.</p>
-<br /> <p className='ppp p-gap'>My Shopify journey started the same way: small experiments, custom sections, recreating app features just to see if I could. Those experiments grew into client work, real projects, and a deep focus on intentional, user-centered development.</p>
+        <p className='ppp p-gap'> Before I stepped fully into the world of full-stack development, I was simply a curious kid who loved making things on the web. My earliest projects were small Shopify customizations and cloned app features built long before I understood best practices. Lots of trial, error, and late-night debugging, hoping the thing I built worked the same way in production as it did in my head.</p>
+<br /> <p className='ppp p-gap'>Working with Shopify early on forced me to understand how front-end, back-end, Liquid, and performance all fit together, a skill set I've sharpened through client work ever since. My side projects whether recreating a complex section, exploring headless setups, or experimenting with new design systems are just excuses to stay curious and keep learning where the web is heading.</p>
 <br />
-<p className='ppp p-gap'>Working with DreamGrowth HQ, Nordblooms, and Daran Holdings taught me that great products don’t happen by accident—they’re crafted with care, clarity, and purpose.</p>
-<br />
-<p className='ppp p-gap'>Today, I work remotely from Lahore, Pakistan, helping brands scale through thoughtful engineering and clean, reliable design. And I continue to learn, experiment, and push myself with every project.</p>
+<p className='ppp p-gap'>Outside work, I enjoy playing cricket, lifting at the gym, trying new food spots around Lahore, polishing small coding ideas, and occasionally taking my camera out to capture the city.</p>
+</div>
+   <div className='img-abouts'>
+    <div className='big-one'>
+        <figure className='figure-of-img'>
+            <img src='./big-one.png' className='imgg' />
+            <figcaption className='fig-cap'>central Park, New York</figcaption>
+        </figure>
     </div>
+     <div className='small-one'>
+        <figure className='figure-of-img'>
+            <img src='./small-one.jpeg' className='imgg' />
+         <figcaption className='fig-cap'> Badshahi Mosque, Lahore</figcaption>
+        </figure>
+    </div>
+
+   </div>
     </>
 
   );

@@ -13,6 +13,12 @@ ease infinite;
     padding-bottom: 25px;
     font-weight: 700;
 }
+@media (max-width: 780px){
+    .font-h2{
+        letter-spacing: -1px;
+        font-weight: 600;
+    }
+}
 .div-h2{
     padding-top:40px;
 }

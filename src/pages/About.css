@@ -73,7 +73,7 @@ margin-top: 10px;
 
         .card {
   background: linear-gradient(90deg, #ffffff 0%, #e9d5ff 50%, #fce7f3 100%);
-            padding: 18px 32px;
+            padding: 18px 20px;
             border-radius: 50px;
             display: flex;
             justify-content: space-between;
@@ -216,6 +216,10 @@ body.light-mode .info h3{
     margin-top: 30px;
     font-size: clamp(1rem, 1.301rem + 2vw, 3.95rem);
 }
+.span-about
+{
+  font-family: 'GT Planar', sans-serif;
+}
    :root {
             --pine-dark: #1e463a;
             --pine-medium: #275d4a;
@@ -305,8 +309,8 @@ body.light-mode .info h3{
         }
 
         .point-description {
-            font-size: 1.3rem;
-            line-height: 1.625;
+            font-size: clamp(1rem, .8852rem + .4898vw, 1.375rem);
+            line-height: 160%;
   font-family: 'GT Planar', sans-serif;
         }
 .about-p-main{
@@ -315,5 +319,46 @@ body.light-mode .info h3{
     padding: 0px 25px;
 }
 .ppp{
-    font-weight: 500;
+    font-weight: 400;
+    font-size: clamp(1rem, .8852rem + .4898vw, 1.375rem);
+    line-height: 160%;
+}
+.img-abouts {
+padding: 0px 140px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 70px auto 2rem;
+gap: 16px;
+}
+.big-one,
+.small-one {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.fig-cap{
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    display: flex;
+    z-index: 50;
+    background: #ede7de;
+    border-radius: calc(16px / 2);
+    padding: calc(16px / 2) 16px;
+    color: var(--color-text-secondary);
+    font-family: 'GT Planar', sans-serif;
+}
+.figure-of-img{
+    position: relative;
+}
+.imgg{
+    height: 600px !important;
+    object-fit: cover;
+}
+@media (max-width: 780px){
+    .img-abouts{
+        flex-direction:column;
+        padding: 0px 20px;
+    }
 }
