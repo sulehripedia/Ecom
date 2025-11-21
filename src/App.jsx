@@ -10,6 +10,7 @@ import TestHome from './pages/TestHome';
 import PillNav from './components/PillNav';
 import Footer from './components/Footer';
 import About from './pages/About';
+import Play from './pages/Play';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
        <Route path='/' element={<TestHome/>}/>
        <Route path='/ai-agent' element={<FreeAIAgent />} />
        <Route path='/about' element={<About />} />
+       <Route path='/play' element={<Play />} />
       </Routes>
        <Footer />
        </BrowserRouter>

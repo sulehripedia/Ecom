@@ -22,7 +22,6 @@ const PillNav = () => {
 
   return (
     <>
-      {/* Fixed header */}
       <header className={`pillnav-header ${scrolled ? "scrolled" : ""}`}>
         <nav className={`pillnav-container ${scrolled ? "scrolled" : ""}`}>
           {navItems.map((item) => (
@@ -38,7 +37,7 @@ const PillNav = () => {
               >
                 {item.name}
                 {item.name === "Work" && (
-                  <span className="pillnav-work-icon">/</span>
+                  <p className="pillnav-work-icon">/</p>
                 )}
               </NavLink>
             </div>

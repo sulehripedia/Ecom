@@ -106,5 +106,6 @@ width: 24px;
 height: 24px;
 font-size: clamp(.875rem, .7985rem + .3265vw, 1.125rem);
 margin-left: 0.25rem;
+color:  #8ed0bb !important;
 }
 }
